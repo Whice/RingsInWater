@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace View
 {
@@ -20,11 +20,14 @@ namespace View
         {
             return new Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
         }
-        public void AddForceToBody(Vector3 fromPoint)
+        public void AddForceToBody(Vector3 fromPoint, float force)
         {
-            Vector3 direction = this.transform.position - fromPoint;
+            Vector3 delta = this.transform.position - fromPoint;
+            Vector3 direction = delta.normalized;
+            force  -= Vector3.Distance(this.transform.position, fromPoint);
+            if (force < 0) force = 0;
 
-            ringBody.AddForce(Mult(direction, forceAxisMultiplier), ForceMode.Force);
+            this.ringBody.AddForce(Mult(direction, this.forceAxisMultiplier) * force, ForceMode.Force);
         }
     }
 }

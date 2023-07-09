@@ -48,3 +48,5 @@ MonoBehaviour:
   randomPositionsRange: {x: 7, y: 15}
   ringViewTemplate: {fileID: 5422956876714831150, guid: d29b281a1e0ad4949b7ba590d6e5191e,
     type: 3}
+  points: []
+  impactForce: 250

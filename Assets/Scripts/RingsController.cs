@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 namespace View
 {
@@ -7,11 +7,13 @@ namespace View
         [SerializeField] private int ringsCount = 3;
         [SerializeField] private Vector2 randomPositionsRange = Vector2.one;
         [SerializeField] private RingView ringViewTemplate = null;
+        [SerializeField] private Transform[] points = new Transform[0];
+        [SerializeField] private float impactForce = 3f;
 
         private RingView[] ringViews;
 
         /// <summary>
-        /// Проверить пересечение Объектов.
+        /// РџСЂРѕРІРµСЂРёС‚СЊ РїРµСЂРµСЃРµС‡РµРЅРёРµ РћР±СЉРµРєС‚РѕРІ.
         /// </summary>
         /// <param name="view1"></param>
         /// <param name="view2"></param>
@@ -26,11 +28,11 @@ namespace View
                 return Vector3.Distance(t1.position, t2.position) > 1;
             }
 
-            // Если один из объектов не имеет коллайдера, вернуть false
+            // Р•СЃР»Рё РѕРґРёРЅ РёР· РѕР±СЉРµРєС‚РѕРІ РЅРµ РёРјРµРµС‚ РєРѕР»Р»Р°Р№РґРµСЂР°, РІРµСЂРЅСѓС‚СЊ false
             return false;
         }
         /// <summary>
-        /// Есть ли пересечения с уже созданными объектами.
+        /// Р•СЃС‚СЊ Р»Рё РїРµСЂРµСЃРµС‡РµРЅРёСЏ СЃ СѓР¶Рµ СЃРѕР·РґР°РЅРЅС‹РјРё РѕР±СЉРµРєС‚Р°РјРё.
         /// </summary>
         /// <param name="view"></param>
         /// <returns></returns>
@@ -87,5 +89,23 @@ namespace View
         {
             CreateRings();
         }
+
+        private void AddForceFromPoint(int number)
+        {
+            foreach (RingView currentView in this.ringViews)
+            {
+                currentView.AddForceToBody(this.points[number].transform.position, this.impactForce);
+            }
+        }
+        
+        public void AddForceFromPoint1()
+        {
+            AddForceFromPoint(0);
+        }
+        public void AddForceFromPoint2()
+        {
+            AddForceFromPoint(1);
+        }
+
     }
 }
