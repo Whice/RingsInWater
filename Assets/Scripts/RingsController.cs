@@ -72,7 +72,7 @@ namespace View
             {
                 int counter = 0;
                 newView = Instantiate(this.ringViewTemplate, this.transform.transform);
-                newView.transform.position = this.randomPosition;
+                newView.transform.localPosition = this.randomPosition;
                 newView.gameObject.name = $"RingView{i}";
                 while (IsIntersectionWithObjects(newView))
                     {
