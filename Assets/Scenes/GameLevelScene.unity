@@ -831,6 +831,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room
       objectReference: {fileID: 0}
+    - target: {fileID: 8586817703556728999, guid: 490ea10eaed89814d82770e299a6f972,
+        type: 3}
+      propertyPath: m_Name
+      value: Shpil2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 490ea10eaed89814d82770e299a6f972, type: 3}
 --- !u!1001 &8049534000355612940
