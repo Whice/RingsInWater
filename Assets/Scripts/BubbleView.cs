@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
@@ -44,4 +44,5 @@ public class BubbleView : MonoBehaviour
             );
         this.startPoint = this.transform.position;
     }
+
 }
