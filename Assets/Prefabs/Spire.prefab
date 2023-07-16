@@ -107,8 +107,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5697023864997055998}
+  - component: {fileID: 4834947286886180806}
   m_Layer: 0
-  m_Name: Shpil
+  m_Name: Spire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +131,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4834947286886180806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893585619870995969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d99b8fc955bd2f4799e32f43d386e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8696532079459686724
 GameObject:
   m_ObjectHideFlags: 0

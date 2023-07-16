@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using RingInWater.Utility;
+using UnityEngine;
 
-namespace Level
+namespace RingInWater.View
 {
     /// <summary>
     /// Создать.
@@ -10,7 +11,7 @@ namespace Level
 
     }
 
-    public class GameLevelManager : MonoBehaviour
+    public class GameLevelManager : MonoBehaviourLogger
     {
         [SerializeField] private GameInteface inteface;
         [SerializeField] private RoomController room;

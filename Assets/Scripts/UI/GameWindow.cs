@@ -1,17 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using RingInWater.Utility;
+using RingInWater.View;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameWindow : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Button leftBubbleButton = null;
-    [SerializeField] private Button rightBubbleButton = null;
-    [SerializeField] private BubbleSpawner spawner = null;
-
-    private void Awake()
+    public class GameWindow : MonoBehaviourLogger
     {
-        leftBubbleButton.onClick.AddListener(() => spawner.CreateBubbles(0));
-        rightBubbleButton.onClick.AddListener(() => spawner.CreateBubbles(1));
+        [SerializeField] private Button leftBubbleButton = null;
+        [SerializeField] private Button rightBubbleButton = null;
+        [SerializeField] private BubbleSpawner spawner = null;
+
+        private void Awake()
+        {
+            leftBubbleButton.onClick.AddListener(() => spawner.CreateBubbles(0));
+            rightBubbleButton.onClick.AddListener(() => spawner.CreateBubbles(1));
+        }
     }
 }

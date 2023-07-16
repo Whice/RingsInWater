@@ -1,10 +1,9 @@
-﻿using System;
-using Unity.VisualScripting;
+﻿using RingInWater.Utility;
 using UnityEngine;
 
-namespace View
+namespace RingInWater.View
 {
-    public class RingView : MonoBehaviour
+    public class RingView : MonoBehaviourLogger
     {
         public Collider selfCollider { get; private set; }
         public Rigidbody ringBody { get; private set; }
@@ -17,6 +16,8 @@ namespace View
         {
             this.ringBody = GetComponentInChildren<Rigidbody>();
             this.selfCollider = GetComponentInChildren<Collider>();
+            //Ограничить угловую скорость, чтобы кольца не вращались слишком сильно.
+            this.ringBody.maxAngularVelocity = 3f;
         }
         public void CheckLeftRightBorder()
         {

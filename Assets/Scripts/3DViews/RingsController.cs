@@ -1,24 +1,29 @@
-﻿using UnityEngine;
-using UnityEngine.UIElements;
+﻿using RingInWater.Utility;
+using UnityEngine;
 
-namespace View
+namespace RingInWater.View
 {
-    public class RingsController : MonoBehaviour
+    public class RingsController : InitilizableView
     {
         [SerializeField] private int ringsCount = 3;
         [SerializeField] private Vector2 randomPositionsRange = Vector2.one;
         [SerializeField] private RingView ringViewTemplate = null;
-        [SerializeField] private BubbleSpawner bubbleSpawner = null;
-        [SerializeField] private float impactForce = 3f;
+        [Header("Waves")]
         [SerializeField]private Transform leftWave = null;
         [SerializeField]private Transform rightWave = null;
-        [SerializeField] private Vector3 waveForceAxisMultiplier = Vector3.one;
         [SerializeField] private float maxWaveVelocity = 4f;
 
         [Header("Explode")]
         [SerializeField] private float explosionRadius = 5f;
         [SerializeField] private float force = 5f;
 
+        private BubbleSpawner bubbleSpawner
+        {
+            get => this.roomController.bubbleSpawner;
+        }
+        /// <summary>
+        /// Точки появления пузырей, они же - места, откуда идет поток толкающей воды.
+        /// </summary>
         private Transform[] bubbleSpawnPoints
         {
             get => this.bubbleSpawner.startPoints;
@@ -64,6 +69,9 @@ namespace View
 
             return false;
         }
+        /// <summary>
+        /// Получить случайное положение в заданных выше координатах.
+        /// </summary>
         private Vector3 randomPosition
         {
             get => new Vector3
@@ -73,10 +81,17 @@ namespace View
                     0
                 );
         }
+        /// <summary>
+        /// Приподнять объект на 1 единицу.
+        /// </summary>
+        /// <param name="transform"></param>
         private void RaiseObjectHigher(Transform transform)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
         }
+        /// <summary>
+        /// Создать все кольцо и заполнить всю инфорамцию для/о них.
+        /// </summary>
         private void CreateRings()
         {
             RingView newView = null;
@@ -85,7 +100,7 @@ namespace View
             for (int i=0;i<this.ringsCount; i++)
             {
                 int counter = 0;
-                newView = Instantiate(this.ringViewTemplate, this.transform.transform);
+                newView = InstantiateWithInject(this.ringViewTemplate, this.transform);
                 newView.transform.localPosition = this.randomPosition;
                 newView.gameObject.name = $"RingView{i}";
                 while (IsIntersectionWithObjects(newView))
@@ -97,13 +112,16 @@ namespace View
                 }
                 this.ringViews[i] = newView;
                 this.ringsBodies[i] = newView.ringBody;
-                newView.ringBody.maxAngularVelocity = 3f;
             }
         }
 
         #region Explosion
 
         private Rigidbody[] ringsBodies;
+        /// <summary>
+        /// Применить взыв к кольцам, чтобы они подлетели вверх.
+        /// </summary>
+        /// <param name="position"></param>
         private void Explode(Vector3 position)
         {
             for (int i = 0; i < this.ringsBodies.Length; i++)
@@ -118,6 +136,7 @@ namespace View
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
+            //Нарисовать области воздействия взрыва.
             for(int i=0;i<this.bubbleSpawnPoints.Length;i++)
             {
                 Gizmos.DrawWireSphere(this.bubbleSpawnPoints[i].transform.position, this.explosionRadius);
@@ -142,21 +161,26 @@ namespace View
         }
 
 
-        private void Awake()
+        public override void Initilize(RoomController roomController)
         {
+            base.Initilize(roomController);
             CreateRings();
         }
         private void FixedUpdate()
         {
-            float maxWaveVelocity = this.maxWaveVelocity;
-            foreach (RingView currentView in this.ringViews)
+            if (this.isInittilized)
             {
-                if (leftWave.position.x < currentView.xPosition)
-                    if (Mathf.Abs(currentView.ringBody.velocity.x) < maxWaveVelocity)
-                        currentView.ringBody.AddForce(new Vector3(-maxWaveVelocity, maxWaveVelocity * 0.1f, 0), ForceMode.Force);
-                if (rightWave.position.x > currentView.xPosition)
-                    if (Mathf.Abs(currentView.ringBody.velocity.x) < maxWaveVelocity)
-                        currentView.ringBody.AddForce(new Vector3(maxWaveVelocity, maxWaveVelocity * 0.1f, 0), ForceMode.Force);
+                //Задействовать "волну, которая будет возврщать кольца ближе к центру, когда они уплывают слишком сильно вправо или влево.
+                float maxWaveVelocity = this.maxWaveVelocity;
+                foreach (RingView currentView in this.ringViews)
+                {
+                    if (leftWave.position.x < currentView.xPosition)
+                        if (Mathf.Abs(currentView.ringBody.velocity.x) < maxWaveVelocity)
+                            currentView.ringBody.AddForce(new Vector3(-maxWaveVelocity, maxWaveVelocity * 0.1f, 0), ForceMode.Force);
+                    if (rightWave.position.x > currentView.xPosition)
+                        if (Mathf.Abs(currentView.ringBody.velocity.x) < maxWaveVelocity)
+                            currentView.ringBody.AddForce(new Vector3(maxWaveVelocity, maxWaveVelocity * 0.1f, 0), ForceMode.Force);
+                }
             }
         }
     }
