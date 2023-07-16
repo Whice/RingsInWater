@@ -130,6 +130,11 @@ namespace RingInWater.View
                 if (rigidbody != null)
                 {
                     rigidbody.AddExplosionForce(this.force, position, this.explosionRadius);
+                    float delta = rigidbody.transform.position.x - position.x;
+                    float direction = delta/Mathf.Abs(delta);
+                    delta = (10 - Mathf.Abs(delta)) * direction * 50;
+                    rigidbody.AddForce(delta, 0, 0, ForceMode.Force);
+                    this.ringViews[i].OnForceAdded();
                 }
             }
         }

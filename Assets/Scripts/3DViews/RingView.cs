@@ -21,8 +21,7 @@ namespace RingInWater.View
             yield return new WaitForSeconds(this.ringOnSpireDisablePhisicsTime);
             if (this.ringCenterView.isRingOnSpire)
             {
-                this.ringBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY;
-                LogInfo("Phis is disable!");
+                this.ringBody.isKinematic = true;
             }
         }
         private void OnRingEnteredSpireChanged()
@@ -38,10 +37,17 @@ namespace RingInWater.View
                     StopCoroutine(this.delayCoroutine);
                     this.delayCoroutine = null;
                 }
-                this.ringBody.constraints = RigidbodyConstraints.FreezePositionZ;
             }
         }
-
+        public void OnForceAdded()
+        {
+            if (ringCenterView.isRingOnSpire)
+            {
+                if (delayCoroutine != null)
+                    StopCoroutine(this.delayCoroutine);
+                this.delayCoroutine = StartCoroutine(DelayForPhisicsDisable());
+            }
+        }
         public void CheckLeftRightBorder()
         {
             float xPosition = this.transform.localPosition.x;
