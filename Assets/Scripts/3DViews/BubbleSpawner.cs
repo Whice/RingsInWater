@@ -9,6 +9,7 @@ namespace RingInWater.View
         [SerializeField] private int minBubbles = 10;
         [SerializeField] private int maxBubbles = 30;
         [SerializeField] private float maxBubblesVisibleHeight = 30f;
+        [SerializeField] private Vector2 minMaxBubbleSize = Vector2.one;
         [SerializeField] private BubbleView bubbleViewTemplate = null;
         [SerializeField] private Transform[] startPointsPrivate = new Transform[0];
         [Header("Bubbles with time")]
@@ -53,7 +54,9 @@ namespace RingInWater.View
             BubbleView view = GetBubble();
             view.maxBubblesVisibleHeight = this.maxBubblesVisibleHeight;
             view.transform.SetParent(parent);
-            float size = this.random.Next(1, 3) / 3f;
+            int minSize = (int)(this.minMaxBubbleSize.x * 100);
+            int maxSize = (int)(this.minMaxBubbleSize.y * 100);
+            float size = this.random.Next(minSize, maxSize) * 0.01f;
             view.SetSize(size);
 
             return view;
