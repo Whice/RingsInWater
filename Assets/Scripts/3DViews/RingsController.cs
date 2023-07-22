@@ -11,10 +11,6 @@ namespace RingInWater.View
         [SerializeField] private int ringsCount = 3;
         [SerializeField] private Vector2 randomPositionsRange = Vector2.one;
         [SerializeField] private RingView ringViewTemplate = null;
-        [Header("Waves")]
-        [SerializeField]private Transform leftWave = null;
-        [SerializeField]private Transform rightWave = null;
-        [SerializeField] private float maxWaveVelocity = 4f;
 
         [Header("Explode")]
         [SerializeField] private float explosionRadius = 5f;
@@ -39,6 +35,10 @@ namespace RingInWater.View
         /// Представления участвующие в игре.
         /// </summary>
         private RingView[] ringViews;
+        /// <summary>
+        /// Представления для движения волной.
+        /// </summary>
+        public IWaveMovable[] waveMovables { get; private set; }
 
         #region Создание колец.
 
@@ -148,6 +148,7 @@ namespace RingInWater.View
         {
             RingView newView = null;
             this.ringViews= new RingView[this.ringsCount];
+            this.waveMovables= new IWaveMovable[this.ringsCount];
             this.ringsBodies = new Rigidbody[ringsCount];
             for (int i=0;i<this.ringsCount; i++)
             {
@@ -172,7 +173,8 @@ namespace RingInWater.View
                         );
                 }
                 this.ringViews[i] = newView;
-                this.ringsBodies[i] = newView.ringBody;
+                this.ringsBodies[i] = newView.selfRigidbody;
+                this.waveMovables[i] = newView;
             }
         }
 
@@ -242,23 +244,6 @@ namespace RingInWater.View
         {
             base.Initilize(roomController);
             CreateRings();
-        }
-        private void FixedUpdate()
-        {
-            if (this.isInittilized)
-            {
-                //Задействовать "волну, которая будет возврщать кольца ближе к центру, когда они уплывают слишком сильно вправо или влево.
-                float maxWaveVelocity = this.maxWaveVelocity;
-                foreach (RingView currentView in this.ringViews)
-                {
-                    if (leftWave.position.x < currentView.xPosition)
-                        if (Mathf.Abs(currentView.ringBody.velocity.x) < maxWaveVelocity)
-                            currentView.ringBody.AddForce(new Vector3(-maxWaveVelocity, maxWaveVelocity * 0.1f, 0), ForceMode.Force);
-                    if (rightWave.position.x > currentView.xPosition)
-                        if (Mathf.Abs(currentView.ringBody.velocity.x) < maxWaveVelocity)
-                            currentView.ringBody.AddForce(new Vector3(maxWaveVelocity, maxWaveVelocity * 0.1f, 0), ForceMode.Force);
-                }
-            }
         }
     }
 }

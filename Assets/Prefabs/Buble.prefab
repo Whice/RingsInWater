@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c1bb4f07399414b95d2bf80376a305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxBubblesVisibleHeight: 0
 --- !u!54 &1146179745798332032
 Rigidbody:
   m_ObjectHideFlags: 0

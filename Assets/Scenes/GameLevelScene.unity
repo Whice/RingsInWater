@@ -1123,6 +1123,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2889314335071805478, guid: 490ea10eaed89814d82770e299a6f972,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtonPoint1
+      objectReference: {fileID: 0}
     - target: {fileID: 2964192210705523735, guid: 490ea10eaed89814d82770e299a6f972,
         type: 3}
       propertyPath: m_RootOrder
@@ -1187,6 +1192,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758319411726758016, guid: 490ea10eaed89814d82770e299a6f972,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtpnPoint2
       objectReference: {fileID: 0}
     - target: {fileID: 4214013682722440121, guid: 490ea10eaed89814d82770e299a6f972,
         type: 3}

@@ -8,6 +8,7 @@ namespace RingInWater.View
         [SerializeField] private RingsController ringsControllerPrivate = null;
         [SerializeField] private BubbleSpawner bubbleSpawnerPrivate = null;
         [SerializeField] private SpiresController spiresControllerPrivate = null;
+        [SerializeField] private LeftRightWaves leftRightWavesPrivate = null;
 
         public RingsController ringsController
         {
@@ -21,11 +22,16 @@ namespace RingInWater.View
         {
             get => this.spiresControllerPrivate;
         }
+        public LeftRightWaves leftRightWaves
+        {
+            get=>this.leftRightWavesPrivate;
+        }
         private void Awake()
         {
             this.spiresController.Initilize(this);
             this.ringsController.Initilize(this);
             this.bubbleSpawner.Initilize(this);
+            this.leftRightWaves.Initilize(this);
         }
     }
 }

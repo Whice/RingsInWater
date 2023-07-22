@@ -7,7 +7,7 @@ namespace RingInWater.View
     /// <summary>
     /// Представление кольца.
     /// </summary>
-    public class RingView : MonoBehaviourLogger
+    public class RingView : MonoBehaviourLogger, IWaveMovable
     {
         [SerializeField] private RingCenterView ringCenterView = null;
         [SerializeField] private float ringOnSpireDisablePhisicsTime = 1f;
@@ -18,13 +18,13 @@ namespace RingInWater.View
         /// <summary>
         /// <see cref="Rigidbody"/> представления кольца.
         /// </summary>
-        public Rigidbody ringBody { get; private set; }
+        public Rigidbody selfRigidbody { get; private set; }
         /// <summary>
         /// Положение кольца по x оси.
         /// </summary>
-        public float xPosition
+        public Vector3 position
         {
-            get => this.transform.position.x;
+            get => this.transform.position;
         }
 
         private Coroutine delayCoroutine;
@@ -33,7 +33,7 @@ namespace RingInWater.View
         /// </summary>
         public void ResetView()
         {
-            this.ringBody.isKinematic = false;
+            this.selfRigidbody.isKinematic = false;
         }
         /// <summary>
         /// Отключить физику с задержкой.
@@ -44,7 +44,7 @@ namespace RingInWater.View
             yield return new WaitForSeconds(this.ringOnSpireDisablePhisicsTime);
             if (this.ringCenterView.isRingOnSpire)
             {
-                this.ringBody.isKinematic = true;
+                this.selfRigidbody.isKinematic = true;
             }
         }
         /// <summary>
@@ -84,10 +84,10 @@ namespace RingInWater.View
         }
         private void Awake()
         {
-            this.ringBody = GetComponentInChildren<Rigidbody>();
+            this.selfRigidbody = GetComponentInChildren<Rigidbody>();
             this.selfCollider = GetComponentInChildren<Collider>();
             //Ограничить угловую скорость, чтобы кольца не вращались слишком сильно.
-            this.ringBody.maxAngularVelocity = 3f;
+            this.selfRigidbody.maxAngularVelocity = 3f;
             this.ringCenterView.ringEnteredSpireChanged += OnRingEnteredSpireChanged;
         }
         private void OnDestroy()

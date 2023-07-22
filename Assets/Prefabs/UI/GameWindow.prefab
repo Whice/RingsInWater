@@ -178,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 8174510848776167411, guid: cffa005e6a360444aabb68de75283a2e,
         type: 3}
       propertyPath: m_Name
-      value: LeftBubbleButton (1)
+      value: LeftBubbleButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cffa005e6a360444aabb68de75283a2e, type: 3}
