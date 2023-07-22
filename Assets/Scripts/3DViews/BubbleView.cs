@@ -9,6 +9,7 @@ namespace RingInWater.View
     {
         public event Action<bool, BubbleView> activeChanged;
         private Vector3 startPoint;
+        public float maxBubblesVisibleHeight;
         public void SetActive(bool isActive)
         {
             this.gameObject.SetActive(isActive);
@@ -24,7 +25,7 @@ namespace RingInWater.View
             while (true)
             {
                 yield return new WaitForSeconds(0.3f);
-                if (this.transform.position.y - this.startPoint.y > 30)
+                if (this.transform.position.y - this.startPoint.y > maxBubblesVisibleHeight)
                 {
                     SetActive(false);
                     break;
@@ -43,7 +44,7 @@ namespace RingInWater.View
                 (
                 random.Next(1, 200) / 100f,
                 random.Next(1, 200) / 100f,
-                0
+                -10f
                 );
             this.startPoint = this.transform.position;
         }

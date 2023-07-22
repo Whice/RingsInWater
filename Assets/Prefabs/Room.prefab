@@ -857,7 +857,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ee3ceb5c5fd2547a5c3b5bf2ce6ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPointsPrivate: []
+  minBubbles: 10
+  maxBubbles: 30
+  maxBubblesVisibleHeight: 80
+  startPointsPrivate:
+  - {fileID: 2026460540606818200}
+  - {fileID: 36892957837981224}
   bubbleViewTemplate: {fileID: 3407114944532481279, guid: 8338fdc099104494b9c13a221720d93b,
     type: 3}
 --- !u!1 &8318138682572755792
@@ -1279,8 +1284,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 828457330535254175, guid: e8048deca06e44942a022bbe3f5eb6f7,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 828457330535254175, guid: e8048deca06e44942a022bbe3f5eb6f7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8.910001
+      objectReference: {fileID: 0}
+    - target: {fileID: 828457330535254175, guid: e8048deca06e44942a022bbe3f5eb6f7,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 828457330535254175, guid: e8048deca06e44942a022bbe3f5eb6f7,
         type: 3}
@@ -1290,7 +1305,7 @@ PrefabInstance:
     - target: {fileID: 828457330535254175, guid: e8048deca06e44942a022bbe3f5eb6f7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 828457330535254175, guid: e8048deca06e44942a022bbe3f5eb6f7,
         type: 3}

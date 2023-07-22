@@ -500,12 +500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ee3ceb5c5fd2547a5c3b5bf2ce6ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &908788734 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2026460540606818200, guid: 490ea10eaed89814d82770e299a6f972,
-    type: 3}
-  m_PrefabInstance: {fileID: 6633470045042344298}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &979825608
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,12 +615,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &1230708004 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 36892957837981224, guid: 490ea10eaed89814d82770e299a6f972,
-    type: 3}
-  m_PrefabInstance: {fileID: 6633470045042344298}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1364070971 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1083218635929545815, guid: 490ea10eaed89814d82770e299a6f972,
@@ -1158,7 +1146,7 @@ PrefabInstance:
     - target: {fileID: 3646750800533456852, guid: 490ea10eaed89814d82770e299a6f972,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 3646750800533456852, guid: 490ea10eaed89814d82770e299a6f972,
         type: 3}
@@ -1225,11 +1213,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6443374840608139102, guid: 490ea10eaed89814d82770e299a6f972,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7029857935184998773, guid: 490ea10eaed89814d82770e299a6f972,
         type: 3}
       propertyPath: m_RootOrder
@@ -1244,6 +1227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8028925667905175209, guid: 490ea10eaed89814d82770e299a6f972,
+        type: 3}
+      propertyPath: m_Name
+      value: BubbleSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 8318138682572755792, guid: 490ea10eaed89814d82770e299a6f972,
         type: 3}
@@ -1265,21 +1253,6 @@ PrefabInstance:
       propertyPath: radius
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 8897422220136743513, guid: 490ea10eaed89814d82770e299a6f972,
-        type: 3}
-      propertyPath: startPointsPrivate.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8897422220136743513, guid: 490ea10eaed89814d82770e299a6f972,
-        type: 3}
-      propertyPath: startPointsPrivate.Array.data[0]
-      value: 
-      objectReference: {fileID: 908788734}
-    - target: {fileID: 8897422220136743513, guid: 490ea10eaed89814d82770e299a6f972,
-        type: 3}
-      propertyPath: startPointsPrivate.Array.data[1]
-      value: 
-      objectReference: {fileID: 1230708004}
     - target: {fileID: 9103219074624543376, guid: 490ea10eaed89814d82770e299a6f972,
         type: 3}
       propertyPath: m_RootOrder

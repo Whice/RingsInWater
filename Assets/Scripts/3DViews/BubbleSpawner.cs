@@ -6,6 +6,9 @@ namespace RingInWater.View
 {
     public class BubbleSpawner : InitilizableView
     {
+        [SerializeField] private int minBubbles = 10;
+        [SerializeField] private int maxBubbles = 30;
+        [SerializeField] private float maxBubblesVisibleHeight = 30f;
         [SerializeField] private Transform[] startPointsPrivate = new Transform[0];
         [SerializeField] private BubbleView bubbleViewTemplate = null;
 
@@ -38,10 +41,11 @@ namespace RingInWater.View
         {
             if (startPointsPrivate.Length > startPointIndex)
             {
-                int count = this.random.Next(1, 4) * 30;
+                int count = this.random.Next(minBubbles, maxBubbles+1);
                 for (int i = 0; i < count; i++)
                 {
                     BubbleView view = GetBubble();
+                    view.maxBubblesVisibleHeight = this.maxBubblesVisibleHeight;
                     view.transform.SetParent(this.startPointsPrivate[startPointIndex]);
                     float size = this.random.Next(1, 3) / 3f;
                     view.SetSize(size);
