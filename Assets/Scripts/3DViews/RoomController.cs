@@ -23,9 +23,9 @@ namespace RingInWater.View
         }
         private void Awake()
         {
+            this.spiresController.Initilize(this);
             this.ringsController.Initilize(this);
             this.bubbleSpawner.Initilize(this);
-            this.spiresController.Initilize(this);
         }
     }
 }

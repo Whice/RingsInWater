@@ -1,5 +1,8 @@
 ﻿using RingInWater.Utility;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 namespace RingInWater.View
 {
@@ -21,6 +24,10 @@ namespace RingInWater.View
         {
             get => this.roomController.bubbleSpawner;
         }
+        private SpiresController spiresController
+        {
+            get => this.roomController.spiresController;
+        }
         /// <summary>
         /// Точки появления пузырей, они же - места, откуда идет поток толкающей воды.
         /// </summary>
@@ -28,8 +35,36 @@ namespace RingInWater.View
         {
             get => this.bubbleSpawner.startPoints;
         }
+        /// <summary>
+        /// Представления участвующие в игре.
+        /// </summary>
         private RingView[] ringViews;
 
+        #region Создание колец.
+
+        /// <summary>
+        /// Созданные представления.
+        /// </summary>
+        private Stack<RingView> createdRingViews = new Stack<RingView>();
+        /// <summary>
+        /// Создать и запомнить представления колец.
+        /// </summary>
+        /// <returns></returns>
+        private RingView GetNewRingView()
+        {
+            RingView newView = null;
+            if (this.createdRingViews.Count== 0)
+            {
+                newView = InstantiateWithInject(this.ringViewTemplate, this.transform);
+                newView.SetActive(false);
+                this.createdRingViews.Push(newView);
+            }
+
+            newView = this.createdRingViews.Pop();
+            newView.ResetView();
+            newView.SetActive(true);
+            return newView;
+        }
         /// <summary>
         /// Проверить пересечение Объектов.
         /// </summary>
@@ -41,9 +76,13 @@ namespace RingInWater.View
             Transform t1 = view1.transform;
             Transform t2 = view2.transform;
 
+            //Установить относительный размер, по которому будет учитываться разница растояния между кольцами
+            float ralatedSize = t1.localScale.x*5;
             if (t1 != null && t2 != null)
             {
-                return Vector3.Distance(t1.localPosition, t2.localPosition) > 1;
+                float distanceX = Mathf.Abs( t1.localPosition.x- t2.localPosition.x);
+                float distanceY = Mathf.Abs( t1.localPosition.y- t2.localPosition.y);
+                return distanceX < ralatedSize &&distanceY < ralatedSize ;
             }
 
             // Если один из объектов не имеет коллайдера, вернуть false
@@ -54,7 +93,7 @@ namespace RingInWater.View
         /// </summary>
         /// <param name="view"></param>
         /// <returns></returns>
-        private bool IsIntersectionWithObjects(RingView view)
+        private bool IsIntersectionWithRings(RingView view)
         {
             foreach(RingView currentView in ringViews)
             {
@@ -76,7 +115,7 @@ namespace RingInWater.View
         {
             get => new Vector3
                 (
-                    Random.Range(0, this.randomPositionsRange.x),
+                    Random.Range(-this.randomPositionsRange.x, this.randomPositionsRange.x),
                     Random.Range(3, this.randomPositionsRange.y + this.transform.localPosition.y + 1),
                     0
                 );
@@ -89,6 +128,19 @@ namespace RingInWater.View
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
         }
+        private bool IsIntersectionWithSpires(Transform newViewTransform)
+        {
+            float xPos = newViewTransform.position.x;
+            float scaleX = newViewTransform.localScale.x;
+            foreach (Vector3 spirePosition in this.spiresController.spiresPositions)
+            {
+                if (Mathf.Abs(spirePosition.x - xPos) <= scaleX)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         /// <summary>
         /// Создать все кольцо и заполнить всю инфорамцию для/о них.
         /// </summary>
@@ -100,20 +152,31 @@ namespace RingInWater.View
             for (int i=0;i<this.ringsCount; i++)
             {
                 int counter = 0;
-                newView = InstantiateWithInject(this.ringViewTemplate, this.transform);
+                newView = GetNewRingView();
                 newView.transform.localPosition = this.randomPosition;
                 newView.gameObject.name = $"RingView{i}";
-                while (IsIntersectionWithObjects(newView))
+                while (IsIntersectionWithRings(newView))
                 {
                     RaiseObjectHigher(newView.transform);
                     counter++;
-                    if (counter > 10)
+                    if (counter > 100)
                         break;
+                }
+                while (IsIntersectionWithSpires(newView.transform))
+                {
+                    newView.transform.position = new Vector3
+                        (
+                        newView.transform.position.x+0.5f,
+                        newView.transform.position.y,
+                        newView.transform.position.z
+                        );
                 }
                 this.ringViews[i] = newView;
                 this.ringsBodies[i] = newView.ringBody;
             }
         }
+
+        #endregion Создание колец.
 
         #region Explosion
 
@@ -165,7 +228,16 @@ namespace RingInWater.View
             AddForceFromPoint(1);
         }
 
-
+        public void ResetRings()
+        {
+            foreach(RingView ringView in this.ringViews)
+            {
+                ringView.ResetView();
+                ringView.SetActive(false);
+                this.createdRingViews.Push(ringView);
+            }
+            CreateRings();
+        }
         public override void Initilize(RoomController roomController)
         {
             base.Initilize(roomController);

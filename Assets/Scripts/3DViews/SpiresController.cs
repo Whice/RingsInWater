@@ -12,12 +12,15 @@ namespace RingInWater.View
         {
             get => this.spiresPrivate;
         }
+        public Vector3[] spiresPositions { get; private set; }
         private void CreateSpires()
         {
+            this.spiresPositions = new Vector3[spirePoints.Length];
             this.spiresPrivate = new SpireView[spirePoints.Length];
             for(int i=0;i<spirePoints.Length;i++)
             {
                 this.spiresPrivate[i] = InstantiateWithInject(spireTemplate, spirePoints[i]);
+                this.spiresPositions[i] = this.spiresPrivate[i].transform.position;
             }
         }
         public override void Initilize(RoomController roomController)
