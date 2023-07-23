@@ -11,6 +11,7 @@ namespace RingInWater.View
         [SerializeField] private int ringsCount = 3;
         [SerializeField] private Vector2 randomPositionsRange = Vector2.one;
         [SerializeField] private RingView ringViewTemplate = null;
+        [SerializeField] private float rangeOfLocation = 10f;
 
         [Header("Explode")]
         [SerializeField] private float explosionRadius = 5f;
@@ -62,7 +63,6 @@ namespace RingInWater.View
 
             newView = this.createdRingViews.Pop();
             newView.ResetView();
-            newView.SetActive(true);
             return newView;
         }
         /// <summary>
@@ -77,12 +77,12 @@ namespace RingInWater.View
             Transform t2 = view2.transform;
 
             //Установить относительный размер, по которому будет учитываться разница растояния между кольцами
-            float ralatedSize = t1.localScale.x*5;
+            float ralatedSize = t1.localScale.x * this.rangeOfLocation;
             if (t1 != null && t2 != null)
             {
-                float distanceX = Mathf.Abs( t1.localPosition.x- t2.localPosition.x);
-                float distanceY = Mathf.Abs( t1.localPosition.y- t2.localPosition.y);
-                return distanceX < ralatedSize &&distanceY < ralatedSize ;
+                float distanceX = Mathf.Abs(t1.localPosition.x - t2.localPosition.x);
+                float distanceY = Mathf.Abs(t1.localPosition.y - t2.localPosition.y);
+                return distanceX < ralatedSize && distanceY < ralatedSize;
             }
 
             // Если один из объектов не имеет коллайдера, вернуть false
@@ -175,6 +175,7 @@ namespace RingInWater.View
                 this.ringViews[i] = newView;
                 this.ringsBodies[i] = newView.selfRigidbody;
                 this.waveMovables[i] = newView;
+                newView.SetActive(true);
             }
         }
 

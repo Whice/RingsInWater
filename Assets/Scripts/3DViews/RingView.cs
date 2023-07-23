@@ -1,5 +1,6 @@
 ﻿using RingInWater.Utility;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RingInWater.View
@@ -28,12 +29,21 @@ namespace RingInWater.View
         }
 
         private Coroutine delayCoroutine;
+        private void StopDelayCoroutine()
+        {
+            if (delayCoroutine != null)
+            {
+                StopCoroutine(this.delayCoroutine);
+                this.delayCoroutine = null;
+            }
+        }
         /// <summary>
         /// Сбросить состояние представления для переиспользования.
         /// </summary>
         public void ResetView()
         {
             this.selfRigidbody.isKinematic = false;
+            StopDelayCoroutine();
         }
         /// <summary>
         /// Отключить физику с задержкой.
@@ -58,11 +68,7 @@ namespace RingInWater.View
             }
             else
             {
-                if (delayCoroutine != null)
-                {
-                    StopCoroutine(this.delayCoroutine);
-                    this.delayCoroutine = null;
-                }
+                StopDelayCoroutine();
             }
         }
         /// <summary>
@@ -94,6 +100,5 @@ namespace RingInWater.View
         {
             this.ringCenterView.ringEnteredSpireChanged -= OnRingEnteredSpireChanged;
         }
-
     }
 }

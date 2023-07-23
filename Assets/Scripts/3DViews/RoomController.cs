@@ -26,7 +26,7 @@ namespace RingInWater.View
         {
             get=>this.leftRightWavesPrivate;
         }
-        private void Awake()
+        private void Start()
         {
             this.spiresController.Initilize(this);
             this.ringsController.Initilize(this);
