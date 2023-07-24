@@ -12,6 +12,12 @@ namespace RingInWater.View
     {
         [SerializeField] private RingCenterView ringCenterView = null;
         [SerializeField] private float ringOnSpireDisablePhisicsTime = 1f;
+        [SerializeField] private MeshRenderer ringMeshRenderer = null;
+        [SerializeField] private float durationColorChanged = 1f;
+        private Material ringMaterial
+        {
+            get => this.ringMeshRenderer.material;
+        }
         /// <summary>
         /// Коллайде представления кольца.
         /// </summary>
@@ -43,6 +49,8 @@ namespace RingInWater.View
         public void ResetView()
         {
             this.selfRigidbody.isKinematic = false;
+            this.isSetKinematick = false;
+            this.ringCenterView.ResetIsRingOnSpire();
             StopDelayCoroutine();
         }
         /// <summary>
@@ -55,6 +63,7 @@ namespace RingInWater.View
             if (this.ringCenterView.isRingOnSpire)
             {
                 this.selfRigidbody.isKinematic = true;
+                StartCoroutine(SetWhite());
             }
         }
         /// <summary>
@@ -88,6 +97,32 @@ namespace RingInWater.View
         {
             this.gameObject.SetActive(isActive);
         }
+        private float leftTime = 0;
+        private Color originalColor;
+        private bool isSetKinematick = false;
+        private IEnumerator SetWhite()
+        {
+            if (!this.isSetKinematick)
+            {
+                this.isSetKinematick= true;
+                Color result = this.originalColor;
+                while (result != Color.white)
+                {
+                    this.leftTime += Time.deltaTime;
+                    result = Color.Lerp(this.originalColor, Color.white, this.leftTime / this.durationColorChanged);
+                    this.ringMaterial.SetColor("_BaseColor", result);
+                    yield return null;
+                }
+                this.leftTime = 0;
+                while (result != this.originalColor)
+                {
+                    this.leftTime += Time.deltaTime;
+                    result = Color.Lerp(Color.white, this.originalColor, this.leftTime / this.durationColorChanged);
+                    this.ringMaterial.SetColor("_BaseColor", result);
+                    yield return null;
+                }
+            }
+        }
         private void Awake()
         {
             this.selfRigidbody = GetComponentInChildren<Rigidbody>();
@@ -95,6 +130,7 @@ namespace RingInWater.View
             //Ограничить угловую скорость, чтобы кольца не вращались слишком сильно.
             this.selfRigidbody.maxAngularVelocity = 3f;
             this.ringCenterView.ringEnteredSpireChanged += OnRingEnteredSpireChanged;
+            this.originalColor = this.ringMaterial.GetColor("_BaseColor");
         }
         private void OnDestroy()
         {

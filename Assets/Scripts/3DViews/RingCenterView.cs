@@ -9,6 +9,10 @@ namespace RingInWater.View
         public bool isRingOnSpire { get; private set; } = false;
         public float ringEnteredSpireTime = 0;
         public event Action ringEnteredSpireChanged;
+        public void ResetIsRingOnSpire()
+        {
+            isRingOnSpire = false;
+        }
         private void OnTriggerEnter(Collider other)
         {
             if (!this.isRingOnSpire)
