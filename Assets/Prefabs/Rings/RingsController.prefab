@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc5db7e9947a34428dbd31b86f6370d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringsCount: 5
-  randomPositionsRange: {x: 10, y: 20}
+  ringsCount: 4
+  randomPositionsRange: {x: 10, y: 25}
   ringViewTemplate: {fileID: 5422956876714831150, guid: d29b281a1e0ad4949b7ba590d6e5191e,
     type: 3}
-  rangeOfLocation: 10
-  explosionRadius: 30
+  rangeOfLocation: 3
+  explosionRadius: 35
   force: 1000
 --- !u!1 &3508400022391673827
 GameObject:
