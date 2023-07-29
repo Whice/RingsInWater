@@ -33,7 +33,7 @@ RectTransform:
   - {fileID: 8593789049915518411}
   - {fileID: 7598870653067623234}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d425ccd0ca22948b50b49c7e2505a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftTimeAfterClick: 0.2
   leftBubbleButton: {fileID: 7336785464309323404}
   rightBubbleButton: {fileID: 8928006383644655621}
   spawner: {fileID: 0}
@@ -68,6 +69,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1657886113622916744}
     m_Modifications:
     - target: {fileID: 668366057294593759, guid: cffa005e6a360444aabb68de75283a2e,
@@ -181,6 +183,9 @@ PrefabInstance:
       value: LeftBubbleButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cffa005e6a360444aabb68de75283a2e, type: 3}
 --- !u!114 &7336785464309323404 stripped
 MonoBehaviour:
@@ -205,6 +210,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1657886113622916744}
     m_Modifications:
     - target: {fileID: 668366057294593759, guid: cffa005e6a360444aabb68de75283a2e,
@@ -318,6 +324,9 @@ PrefabInstance:
       value: RightBubbleButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cffa005e6a360444aabb68de75283a2e, type: 3}
 --- !u!224 &8593789049915518411 stripped
 RectTransform:
