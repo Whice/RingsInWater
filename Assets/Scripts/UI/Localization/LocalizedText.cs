@@ -18,7 +18,7 @@ namespace RingInWater.UI
         private void OnTextSetForLangauge()
         {
             string text = keeper.GetLocalization(key);
-            if(!string.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(text))
             {
                 textField.text = text;
                 textField.font = keeper.currentFont;

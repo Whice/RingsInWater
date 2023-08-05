@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RingInWater.View
 {
-    public class RoomController: MonoBehaviourLogger
+    public class RoomController : MonoBehaviourLogger
     {
         [SerializeField] private RingsController ringsControllerPrivate = null;
         [SerializeField] private BubbleSpawner bubbleSpawnerPrivate = null;
@@ -24,7 +24,7 @@ namespace RingInWater.View
         }
         public LeftRightWaves leftRightWaves
         {
-            get=>this.leftRightWavesPrivate;
+            get => this.leftRightWavesPrivate;
         }
         private void Start()
         {

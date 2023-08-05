@@ -1,7 +1,6 @@
 ﻿using RingInWater.Utility;
 using System;
 using UnityEngine;
-using WarpTravelAR.Utils;
 
 namespace RingInWater.UI
 {
@@ -43,9 +42,9 @@ namespace RingInWater.UI
         /// <summary>
         /// Инициализировать окно данными при его активации.
         /// </summary>
-        protected virtual void OnOpen() {}
+        protected virtual void OnOpen() { }
 
-        protected virtual void OnClose() {}
+        protected virtual void OnClose() { }
         /// <summary>
         /// Установить активность объекта меню, на котором висит скрипт.
         /// </summary>

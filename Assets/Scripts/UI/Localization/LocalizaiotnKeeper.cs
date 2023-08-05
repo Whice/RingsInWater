@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using WarpTravelAR.Utils;
 
 namespace RingInWater.UI
 {
@@ -12,7 +11,7 @@ namespace RingInWater.UI
     {
         [SerializeField] private TextAsset csvFile = null;
         [SerializeField] private SystemLanguage defaultID = SystemLanguage.Russian;
-        [SerializeField]private LanguageFont[] fonts = new LanguageFont[0];
+        [SerializeField] private LanguageFont[] fonts = new LanguageFont[0];
 
 
         [Serializable]
@@ -20,7 +19,7 @@ namespace RingInWater.UI
         {
             public bool isDefault = false;
             public SystemLanguage id;
-            public TMP_FontAsset font = null; 
+            public TMP_FontAsset font = null;
         }
         public TMP_FontAsset currentFont { get; private set; }
         public void SetCurrentFont()

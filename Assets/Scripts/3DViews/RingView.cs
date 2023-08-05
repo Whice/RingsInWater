@@ -1,6 +1,5 @@
 ﻿using RingInWater.Utility;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RingInWater.View
@@ -104,7 +103,7 @@ namespace RingInWater.View
         {
             if (!this.isSetKinematick)
             {
-                this.isSetKinematick= true;
+                this.isSetKinematick = true;
                 Color result = this.originalColor;
                 while (result != Color.white)
                 {

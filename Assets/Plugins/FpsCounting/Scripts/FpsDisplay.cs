@@ -73,7 +73,7 @@ namespace WarpTravelAR.Utils.FPSCounting
         }
         private void UpdateIsFPSEnableFromPersistent()
         {
-            isFpsEnable = PlayerPrefs.GetInt(nameof(_isFpsEnable), _isEnablePFSInStartGame?1:0) != 0;
+            isFpsEnable = PlayerPrefs.GetInt(nameof(_isFpsEnable), _isEnablePFSInStartGame ? 1 : 0) != 0;
         }
 
         #endregion Saved data.

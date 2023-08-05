@@ -1,5 +1,4 @@
-﻿using RingInWater.Utility;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace RingInWater.View

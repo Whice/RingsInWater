@@ -16,7 +16,7 @@ namespace RingInWater.UI
         private void InitWindows()
         {
             windowsDic = new Dictionary<Type, AbstractWindow>(windows.Length);
-            
+
             foreach (AbstractWindow window in windows)
             {
                 window.SetWindowsController(this);

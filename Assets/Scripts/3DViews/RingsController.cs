@@ -1,8 +1,5 @@
-﻿using RingInWater.Utility;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace RingInWater.View
 {
@@ -54,7 +51,7 @@ namespace RingInWater.View
         private RingView GetNewRingView()
         {
             RingView newView = null;
-            if (this.createdRingViews.Count== 0)
+            if (this.createdRingViews.Count == 0)
             {
                 newView = InstantiateWithInject(this.ringViewTemplate, this.transform);
                 newView.SetActive(false);
@@ -95,7 +92,7 @@ namespace RingInWater.View
         /// <returns></returns>
         private bool IsIntersectionWithRings(RingView view)
         {
-            foreach(RingView currentView in ringViews)
+            foreach (RingView currentView in ringViews)
             {
                 if (currentView != null && currentView != view)
                 {
@@ -147,10 +144,10 @@ namespace RingInWater.View
         private void CreateRings()
         {
             RingView newView = null;
-            this.ringViews= new RingView[this.ringsCount];
-            this.waveMovables= new IWaveMovable[this.ringsCount];
+            this.ringViews = new RingView[this.ringsCount];
+            this.waveMovables = new IWaveMovable[this.ringsCount];
             this.ringsBodies = new Rigidbody[ringsCount];
-            for (int i=0;i<this.ringsCount; i++)
+            for (int i = 0; i < this.ringsCount; i++)
             {
                 int counter = 0;
                 newView = GetNewRingView();
@@ -167,7 +164,7 @@ namespace RingInWater.View
                 {
                     newView.transform.position = new Vector3
                         (
-                        newView.transform.position.x+0.5f,
+                        newView.transform.position.x + 0.5f,
                         newView.transform.position.y,
                         newView.transform.position.z
                         );
@@ -197,7 +194,7 @@ namespace RingInWater.View
                 {
                     rigidbody.AddExplosionForce(this.force, position, this.explosionRadius);
                     float delta = rigidbody.transform.position.x - position.x;
-                    float direction = delta/Mathf.Abs(delta);
+                    float direction = delta / Mathf.Abs(delta);
                     delta = (10 - Mathf.Abs(delta)) * direction * 50;
                     if (delta > 0)
                     {
@@ -211,7 +208,7 @@ namespace RingInWater.View
         private void OnDrawGizmos()
         {
             //Нарисовать области воздействия взрыва.
-            for(int i=0;i<this.bubbleSpawnPoints.Length;i++)
+            for (int i = 0; i < this.bubbleSpawnPoints.Length; i++)
             {
                 Gizmos.DrawWireSphere(this.bubbleSpawnPoints[i].transform.position, this.explosionRadius);
             }
@@ -236,7 +233,7 @@ namespace RingInWater.View
 
         public void ResetRings()
         {
-            foreach(RingView ringView in this.ringViews)
+            foreach (RingView ringView in this.ringViews)
             {
                 ringView.ResetView();
                 ringView.SetActive(false);
