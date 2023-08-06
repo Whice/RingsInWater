@@ -1,8 +1,6 @@
-﻿//Copyright: Made by Appfox
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace WarpTravelAR.Utils.FPSCounting
+namespace RingInWater.Utils.FPSCounting
 {
     [RequireComponent(typeof(FpsCounter))]
     public class FpsDisplay : MonoBehaviour

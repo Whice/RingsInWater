@@ -1,5 +1,4 @@
-﻿using RingInWater.Utility;
-using RingInWater.View;
+﻿using RingInWater.View;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff11132388a14f84c9d0a872c5aae42f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowsController: {fileID: 0}
+  windowsController: {fileID: 1315514585645703522}
   roomController: {fileID: 2951387327023477884}
 --- !u!1 &4563438124458512739
 GameObject:
@@ -294,6 +294,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e8990567308f74a86107391125480c, type: 3}
+--- !u!114 &1315514585645703522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3037833977945193742, guid: 45e8990567308f74a86107391125480c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4064824547839908972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa772798ad69494c988a796c8f976e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1737158117949338410 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2338081211630972742, guid: 45e8990567308f74a86107391125480c,

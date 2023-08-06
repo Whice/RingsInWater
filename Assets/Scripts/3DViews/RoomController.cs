@@ -26,6 +26,10 @@ namespace RingInWater.View
         {
             get => this.leftRightWavesPrivate;
         }
+        public void ResetGame()
+        {
+            this.ringsController.ResetRings();
+        }
         private void Start()
         {
             this.spiresController.Initilize(this);

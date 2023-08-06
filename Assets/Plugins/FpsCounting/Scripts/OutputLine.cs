@@ -1,9 +1,7 @@
-//Copyright: Made by Appfox
-
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace WarpTravelAR.Utils.FPSCounting
+namespace RingInWater.Utils.FPSCounting
 {
     public class OutputLine : MonoBehaviour
     {

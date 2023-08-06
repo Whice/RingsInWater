@@ -1,9 +1,7 @@
-//Copyright: Made by Appfox
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace WarpTravelAR.Utils.FPSCounting
+namespace RingInWater.Utils.FPSCounting
 {
     [CreateAssetMenu(fileName = "FpsConfigs", menuName = "ScriptableObjects/Fps/Fps Configs")]
     public class FpsConfigs : ScriptableObject

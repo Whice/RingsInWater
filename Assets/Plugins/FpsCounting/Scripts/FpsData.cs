@@ -1,9 +1,7 @@
-//Copyright: Made by Appfox
-
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace WarpTravelAR.Utils.FPSCounting
+namespace RingInWater.Utils.FPSCounting
 {
     [Serializable]
     public class FpsData
