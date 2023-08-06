@@ -217,7 +217,7 @@ namespace RingInWater.View
 #endif
         #endregion Explosion
 
-        private void AddForceFromPoint(int number)
+        public void AddForceFromPoint(int number)
         {
             Explode(this.bubbleSpawnPoints[number].transform.position);
         }

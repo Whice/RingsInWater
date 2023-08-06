@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001233771527547808}
+  - component: {fileID: 7901226217613926162}
   m_Layer: 0
   m_Name: LocalizaiotnKeeperIntaller
   m_TagString: Untagged
@@ -31,6 +32,20 @@ Transform:
   m_Father: {fileID: 3773785856708065584}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7901226217613926162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845372677746772445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7df5bf95dabd83438c56c1c2985b3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizaiotnKeeperTemplate: {fileID: 6194993018638377715, guid: 9df0ec3bcc8964243b0d517f7b0d28b3,
+    type: 3}
 --- !u!1 &2584448528442754569
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 1553879906945910518}
+  - {fileID: 7901226217613926162}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -103,7 +120,6 @@ GameObject:
   m_Component:
   - component: {fileID: 634279478601107198}
   - component: {fileID: 1553879906945910518}
-  - component: {fileID: 3287307689995352198}
   m_Layer: 0
   m_Name: FpsCounterInstaller
   m_TagString: Untagged
@@ -139,18 +155,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fpsObject: {fileID: 7018662828668088814, guid: a9e23f30b2c865f4c84740d2f67802f7,
-    type: 3}
---- !u!114 &3287307689995352198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6976969210791883796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7df5bf95dabd83438c56c1c2985b3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LocalizaiotnKeeperTemplate: {fileID: 6194993018638377715, guid: 9df0ec3bcc8964243b0d517f7b0d28b3,
     type: 3}

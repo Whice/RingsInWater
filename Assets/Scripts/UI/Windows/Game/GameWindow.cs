@@ -11,7 +11,6 @@ namespace RingInWater.UI
         [SerializeField] private Button leftBubbleButton = null;
         [SerializeField] private Button rightBubbleButton = null;
         [SerializeField] private Button pauseButton = null;
-        [SerializeField] private BubbleSpawner spawner = null;
 
         private class ButtonWithDelay
         {
@@ -43,9 +42,13 @@ namespace RingInWater.UI
 
         private ButtonWithDelay leftBubbleButtonWithDelay;
         private ButtonWithDelay rightBubbleButtonWithDelay;
+        /// <summary>
+        /// Событие, по которому должны быть созданы пузыри и взрыв для колец.
+        /// </summary>
+        public event Action<int> bubbleCreated;
         private void CreateBubbles(int pointIndex)
         {
-            this.spawner.CreateBubbles(pointIndex);
+            this.bubbleCreated?.Invoke(pointIndex);
         }
 
         protected override void OnCreate()
