@@ -1,0 +1,242 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.solacevision.assistant/Editor/mainTheme.uss?fileID=7433441132597879392&amp;guid=9cd30fe3cc1ee424d8c4e855cac0daa3&amp;type=3#mainTheme" />
+    <ui:VisualElement name="login-screen" style="display: flex; flex-grow: 1; background-image: none; cursor: initial; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(135, 110, 110); background-color: rgb(60, 54, 54); width: 100%; height: 100%; max-width: 100%; max-height: 100%; min-width: 100%; min-height: 100%; visibility: visible; flex-shrink: 1;">
+        <ui:VisualElement name="div-text">
+            <ui:Label text="Solace Vision" display-tooltip-when-elided="true" name="title" style="-unity-text-align: upper-center; font-size: 32px; padding-bottom: 10px; padding-top: 10px;" />
+            <ui:Label text="Please enter your API key.\nYou can get an API key by creating an account at:" display-tooltip-when-elided="true" name="guide" style="-unity-text-align: upper-center; white-space: normal;" />
+            <ui:Button text="solacevision.com" display-tooltip-when-elided="true" name="link" style="background-color: rgba(55, 55, 55, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; padding-top: 0; padding-bottom: 12px; padding-right: 0; padding-left: 0; margin-bottom: 0; margin-top: 0; margin-right: 0; margin-left: 0; color: rgb(0, 226, 238);" />
+            <ui:Label text="Invalid API Key. Click the link above to get a valid API key." display-tooltip-when-elided="true" name="warning" style="flex-wrap: wrap; padding-bottom: 6px; display: none; -unity-text-align: upper-center;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="div-api-key-field" style="flex-grow: 1;">
+            <ui:TextField picking-mode="Ignore" name="api-key-field" style="min-width: 90%; padding-bottom: 6px; margin-right: 0;" />
+            <ui:VisualElement name="div-button-enter-api-key" style="align-items: center; justify-content: flex-start; height: auto; width: auto; flex-grow: 0;">
+                <ui:Button text="Enter API Key" display-tooltip-when-elided="true" name="enter-api-key" style="max-width: none; padding-top: 3px; padding-bottom: 3px; align-items: stretch; -unity-text-align: middle-center; position: relative; flex-direction: column; justify-content: flex-start;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:ScrollView name="solaceTopScrollWheel" style="min-width: auto; display: flex;">
+        <ui:VisualElement name="app-window" focusable="false" class="debugAppWindow" style="display: none; height: 100%; min-height: 905px; white-space: normal; min-width: auto;">
+            <ui:VisualElement name="toolbar" class="solaceToolBar">
+                <ui:Button text="Chat" display-tooltip-when-elided="true" name="conversation-menu" class="solaceToolBarButton" style="width: auto; height: 100%; display: flex;" />
+                <ui:Button text="Action" display-tooltip-when-elided="true" name="action-menu" class="solaceToolBarButton" style="height: 100%;" />
+                <ui:Button text="Image" display-tooltip-when-elided="true" name="image-menu" class="solaceToolBarButton" style="height: 100%;" />
+                <ui:Button text="Texture" display-tooltip-when-elided="true" name="material-menu" class="solaceToolBarButton" />
+                <ui:Button text="Model" display-tooltip-when-elided="true" name="model-menu" class="solaceToolBarButton" style="display: none; height: 100%;" />
+                <ui:Button text="Music" display-tooltip-when-elided="true" name="music-menu" class="solaceToolBarButton" style="display: none; width: auto; height: 100%;" />
+                <ui:Button text="Voice" display-tooltip-when-elided="true" name="voice-menu" class="solaceToolBarButton" style="height: 100%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="toolbar-divider" class="solaceToolBarDivider" />
+            <ui:VisualElement name="views" class="solaceViews" style="height: 100%; max-height: 100%; display: flex;">
+                <ui:VisualElement name="conversation" class="debugConversation" style="display: flex;">
+                    <ui:VisualElement name="div-title-info" class="debugTitle-Info" style="left: 0; flex-grow: 1;">
+                        <ui:Label text="Conversation" display-tooltip-when-elided="true" name="title" class="debugTitle" />
+                        <ui:Label text="Ask anything and get a text response." display-tooltip-when-elided="true" name="info" class="debugInfo" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-input-holder" class="inputHolder">
+                        <ui:Label text="Type and Press Submit:" display-tooltip-when-elided="true" name="Input-Info" class="input-info-label" />
+                        <ui:ScrollView name="inputView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color inputView">
+                            <ui:TextField label="Text Field" name="inputText" multiline="true" readonly="false" is-delayed="true" max-length="9999" password="false" class="input-field-color input-field-overrider input-label-overrider solace-InputText" style="flex-grow: initial; flex-wrap: wrap; flex-shrink: 1; white-space: normal; flex-direction: column;" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-submit-holder" class="divSubmit-Holder" style="flex-direction: row-reverse; flex-grow: 1;">
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-button" class="submitButton" />
+                        <ui:VisualElement name="loading-holder" class="loadingholder" style="width: 32px; height: 32px; flex-grow: initial;">
+                            <ui:VisualElement name="loading-wheel" class="loadingWheel" style="background-image: resource(&apos;loading_wheel_full&apos;); width: 32px; height: 32px; rotate: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-output-holder" class="divOutputHolder" style="display: flex;">
+                        <ui:ScrollView name="chatView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color solaceChatView" style="flex-grow: 1; height: 100%; max-height: 100%;">
+                            <ui:TextField label="Text Field" name="chatText" multiline="true" readonly="true" is-delayed="true" max-length="9999" password="false" class="input-field-color input-label-overrider input-field-overrider solaceChatReply" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="action" class="debugConversation" style="display: none; visibility: visible;">
+                    <ui:VisualElement name="div-title-info" class="debugTitle-Info" style="left: 0; flex-grow: 1;">
+                        <ui:Label text="Action" display-tooltip-when-elided="true" name="title" class="debugTitle" />
+                        <ui:Label text="Execute or create GameObjects/Scripts in the Scene view." display-tooltip-when-elided="true" name="info" class="debugInfo" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-input-holder" class="inputHolder">
+                        <ui:Label text="Type and Press Submit:" display-tooltip-when-elided="true" name="Input-Info" class="input-info-label" />
+                        <ui:ScrollView name="inputView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color inputView">
+                            <ui:TextField label="Text Field" name="inputText" multiline="true" readonly="false" is-delayed="true" max-length="9999" password="false" class="input-field-color input-field-overrider input-label-overrider solace-InputText" style="flex-grow: initial; flex-wrap: wrap; flex-shrink: 1; white-space: normal; flex-direction: column;" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-submit-holder" class="divSubmit-Holder" style="flex-direction: row-reverse; flex-grow: 1;">
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-button" class="submitButton" style="max-width: none; white-space: nowrap; -unity-text-align: middle-center; align-items: stretch; justify-content: flex-start; min-width: auto;" />
+                        <ui:VisualElement name="loading-holder" class="loadingholder" style="width: 32px; height: 32px;">
+                            <ui:VisualElement name="loading-wheel" class="loadingWheel" style="background-image: resource(&apos;loading_wheel_full&apos;); width: 32px; height: 32px; rotate: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-output-holder" class="divOutputHolder" style="display: flex;">
+                        <ui:ScrollView name="chatView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color solaceChatView" style="flex-grow: 1;">
+                            <ui:TextField label="Text Field" name="chatText" multiline="true" readonly="true" is-delayed="true" max-length="9999" password="false" class="input-field-color input-label-overrider input-field-overrider solaceChatReply" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="image" class="debugConversation" style="display: none; visibility: visible;">
+                    <ui:VisualElement name="div-title-info" class="debugTitle-Info" style="left: 0; flex-grow: 1;">
+                        <ui:Label text="Image" display-tooltip-when-elided="true" name="title" class="debugTitle" />
+                        <ui:Label text="Describe an image to be generated." display-tooltip-when-elided="true" name="info" class="debugInfo" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-input-holder" class="inputHolder">
+                        <ui:Label text="Type and Press Submit:" display-tooltip-when-elided="true" name="Input-Info" class="input-info-label" />
+                        <ui:ScrollView name="inputView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color inputView">
+                            <ui:TextField label="Text Field" name="inputText" multiline="true" readonly="false" is-delayed="true" max-length="9999" password="false" class="input-field-color input-field-overrider input-label-overrider solace-InputText" style="flex-grow: initial; flex-wrap: wrap; flex-shrink: 1; white-space: normal; flex-direction: column;" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-submit-holder" class="divSubmit-Holder" style="flex-direction: row-reverse; flex-grow: 1;">
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-button" class="submitButton" style="max-width: none; white-space: nowrap; -unity-text-align: middle-center; align-items: stretch; justify-content: flex-start; min-width: auto;" />
+                        <ui:VisualElement name="loading-holder" class="loadingholder" style="width: 32px; height: 32px;">
+                            <ui:VisualElement name="loading-wheel" class="loadingWheel" style="background-image: resource(&apos;loading_wheel_full&apos;); width: 32px; height: 32px; rotate: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-output-holder" class="divOutputHolder">
+                        <ui:VisualElement name="save-holder" class="solaceSaveHolder" style="align-items: stretch; justify-content: flex-end;">
+                            <ui:TextField picking-mode="Ignore" label="New Asset Name:" name="save-name" max-length="100" class="solaceSaveName" />
+                            <ui:VisualElement name="save-folder" class="solaceSaveFolder">
+                                <ui:Button text="Save" display-tooltip-when-elided="true" name="save-asset" class="solaceSaveButton" style="flex-grow: 1; width: 10%;" />
+                                <ui:TextField picking-mode="Ignore" value="filler text" text="Assets/" name="save-path-field" class="solaceSaveFilePath" />
+                                <ui:Button text="Choose Folder" display-tooltip-when-elided="true" name="set-save-path" class="solaceSetFilePathButton" style="flex-grow: 1;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label display-tooltip-when-elided="true" name="output-text" class="solaceOutputText" />
+                        <ui:VisualElement name="image-holder" class="solaceImageHolder" style="flex-grow: 1; height: auto;">
+                            <ui:VisualElement name="output-image" class="solaceOutputImage" style="align-items: center; justify-content: center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="texture" class="debugConversation" style="display: none; visibility: visible;">
+                    <ui:VisualElement name="div-title-info" class="debugTitle-Info">
+                        <ui:Label text="Texture" display-tooltip-when-elided="true" name="title" class="debugTitle" />
+                        <ui:Label text="Describe a texture to be generated." display-tooltip-when-elided="true" name="info" class="debugInfo" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-input-holder" class="inputHolder">
+                        <ui:Label text="Type and Press Submit:" display-tooltip-when-elided="true" name="Input-Info" class="input-info-label" />
+                        <ui:ScrollView name="inputView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color inputView">
+                            <ui:TextField label="Text Field" name="inputText" multiline="true" readonly="false" is-delayed="true" max-length="9999" password="false" class="input-field-color input-field-overrider input-label-overrider solace-InputText" style="flex-grow: initial; flex-wrap: wrap; flex-shrink: 1; white-space: normal; flex-direction: column;" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-submit-holder" class="divSubmit-Holder" style="flex-direction: row-reverse; flex-grow: 1; display: flex;">
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-button" class="submitButton" style="max-width: none; white-space: nowrap; -unity-text-align: middle-center; align-items: stretch; justify-content: flex-start; min-width: auto;" />
+                        <ui:VisualElement name="loading-holder" class="loadingholder" style="width: 32px; height: 32px;">
+                            <ui:VisualElement name="loading-wheel" class="loadingWheel" style="background-image: resource(&apos;loading_wheel_full&apos;); width: 32px; height: 32px; rotate: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-output-holder" class="divOutputHolder">
+                        <ui:VisualElement name="save-holder" class="solaceSaveHolder" style="align-items: stretch; justify-content: flex-end;">
+                            <ui:TextField picking-mode="Ignore" label="New Asset Name:" name="save-name" max-length="100" class="solaceSaveName" />
+                            <ui:VisualElement name="save-folder" class="solaceSaveFolder">
+                                <ui:Button text="Save" display-tooltip-when-elided="true" name="save-asset" class="solaceSaveButton" style="flex-grow: 1; width: 10%;" />
+                                <ui:TextField picking-mode="Ignore" value="filler text" text="Assets/" name="save-path-field" class="solaceSaveFilePath" />
+                                <ui:Button text="Choose Folder" display-tooltip-when-elided="true" name="set-save-path" class="solaceSetFilePathButton" style="flex-grow: 1;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label display-tooltip-when-elided="true" name="output-text" class="solaceOutputText" />
+                        <ui:VisualElement name="image-holder" class="solaceImageHolder" style="flex-grow: 1; height: auto;">
+                            <ui:VisualElement name="output-image" class="solaceOutputImage" style="align-items: center; justify-content: center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="model" class="debugConversation" style="display: none; visibility: visible;">
+                    <ui:VisualElement name="div-title-info" class="debugTitle-Info" style="width: auto; left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; padding-left: 0;">
+                        <ui:Label text="Model" display-tooltip-when-elided="true" name="title" class="debugTitle" style="font-size: 18px; margin-bottom: 0; padding-bottom: 5px;" />
+                        <ui:Label text="Describe a 3D model to be generated." display-tooltip-when-elided="true" name="info" class="debugInfo" style="margin-bottom: 0; padding-bottom: 15px; white-space: normal;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-input-holder" class="inputHolder">
+                        <ui:Label text="Type and Press Submit:" display-tooltip-when-elided="true" name="Input-Info" class="input-info-label" />
+                        <ui:ScrollView name="inputView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color inputView">
+                            <ui:TextField label="Text Field" name="inputText" multiline="true" readonly="false" is-delayed="true" max-length="9999" password="false" class="input-field-color input-field-overrider input-label-overrider solace-InputText" style="flex-grow: initial; flex-wrap: wrap; flex-shrink: 1; white-space: normal; flex-direction: column;" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-submit-holder" class="divSubmit-Holder" style="flex-direction: row-reverse; padding-bottom: 2%; margin-bottom: 0; margin-left: 2%; margin-right: 2%; margin-top: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-button" class="submitButton" style="flex-direction: column; max-width: none; white-space: nowrap; -unity-text-align: middle-center; align-items: stretch; justify-content: flex-start; flex-wrap: nowrap; flex-grow: 0; min-width: auto; flex-basis: initial;" />
+                        <ui:VisualElement name="loading-holder" class="loadingholder" style="width: 32px; height: 32px;">
+                            <ui:VisualElement name="loading-wheel" class="loadingWheel" style="background-image: resource(&apos;loading_wheel_full&apos;); width: 32px; height: 32px; rotate: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-output-holder" class="divOutputHolder" style="align-items: stretch; display: flex;">
+                        <ui:Label display-tooltip-when-elided="true" name="output-text" class="solaceOutputText" style="background-color: rgba(0, 0, 0, 0); margin-left: 0; margin-right: 0; margin-top: 0; padding-left: 10px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; white-space: normal;" />
+                        <ui:VisualElement name="image-holder" class="solaceImageHolder" style="align-items: center; display: flex;">
+                            <ui:VisualElement name="output-image" class="solaceOutputImage" style="background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/d_icondeletedremote@2x.png?fileID=2800000&amp;guid=626b9cddb29049e4cac50cd87b419945&amp;type=3#d_icondeletedremote@2x&apos;); width: 32px; height: 32px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="music" class="debugConversation" style="display: none; visibility: visible;">
+                    <ui:VisualElement name="div-title-info" class="debugTitle-Info" style="width: auto; left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; padding-left: 0;">
+                        <ui:Label text="Music" display-tooltip-when-elided="true" name="title" class="debugTitle" style="font-size: 18px;" />
+                        <ui:Label text="Describe a musical track to be generated." display-tooltip-when-elided="true" name="info" class="debugInfo" style="white-space: normal;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-input-holder" class="inputHolder" style="display: flex;">
+                        <ui:Label text="Type and Press Submit:" display-tooltip-when-elided="true" name="Input-Info" class="input-info-label" />
+                        <ui:ScrollView name="inputView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color inputView">
+                            <ui:TextField label="Text Field" name="inputText" multiline="true" readonly="false" is-delayed="true" max-length="9999" password="false" class="input-field-color input-field-overrider input-label-overrider solace-InputText" style="flex-grow: initial; flex-wrap: wrap; flex-shrink: 1; white-space: normal; flex-direction: column;" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-submit-holder" class="divSubmit-Holder" style="flex-direction: row-reverse; padding-bottom: 2%; margin-bottom: 0; margin-left: 2%; margin-right: 2%; margin-top: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-button" class="submitButton" style="flex-direction: column; max-width: none; white-space: nowrap; -unity-text-align: middle-center; align-items: stretch; justify-content: flex-start; flex-wrap: nowrap; flex-grow: 0; min-width: auto; flex-basis: initial;" />
+                        <ui:VisualElement name="loading-holder" class="loadingholder" style="width: 32px; height: 32px;">
+                            <ui:VisualElement name="loading-wheel" class="loadingWheel" style="background-image: resource(&apos;loading_wheel_full&apos;); width: 32px; height: 32px; rotate: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-output-holder" class="divOutputHolder" style="align-items: stretch; display: flex;">
+                        <ui:Label display-tooltip-when-elided="true" name="output-text" class="solaceOutputText" style="background-color: rgba(0, 0, 0, 0); margin-left: 0; margin-right: 0; margin-top: 0; padding-left: 10px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; white-space: normal;" />
+                        <ui:VisualElement name="save-holder" class="solaceSaveHolder">
+                            <ui:TextField picking-mode="Ignore" label="New Asset Name:" name="save-name" max-length="100" class="solaceSaveName" style="width: auto; flex-direction: row; padding-top: 3px; padding-bottom: 3px;" />
+                            <ui:VisualElement name="save-folder" class="solaceSaveFolder" style="align-items: stretch; flex-direction: row-reverse;">
+                                <ui:Button text="Save" display-tooltip-when-elided="true" name="save-asset" class="solaceSaveButton" style="padding-top: 6px; padding-bottom: 6px;" />
+                                <ui:TextField picking-mode="Ignore" value="filler text" text="Assets/" name="save-path-field" class="solaceSaveFilePath" style="max-width: 30%; min-width: 30%; flex-direction: row; justify-content: flex-start;" />
+                                <ui:Button text="Choose Folder" display-tooltip-when-elided="true" name="set-save-path" class="solaceSetFilePathButton" style="padding-left: 6px; margin-top: 1px; padding-top: 6px; padding-bottom: 6px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="image-holder" class="solaceImageHolder" style="align-items: center;">
+                            <ui:VisualElement name="output-image" class="solaceOutputImage" style="background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/d_icondeletedremote@2x.png?fileID=2800000&amp;guid=626b9cddb29049e4cac50cd87b419945&amp;type=3#d_icondeletedremote@2x&apos;); width: 32px; height: 32px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="voice" class="debugConversation" style="display: none; visibility: visible; justify-content: flex-start;">
+                    <ui:VisualElement name="div-title-info" class="debugTitle-Info">
+                        <ui:Label text="Text-to-Speech" display-tooltip-when-elided="true" name="title" class="debugTitle" />
+                        <ui:Label text="Enter text, change some modes, and generate a voice." display-tooltip-when-elided="true" name="info" class="debugInfo" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-input-holder" class="inputHolder">
+                        <ui:Label text="Type and Press Submit:" display-tooltip-when-elided="true" name="Input-Info" class="input-info-label" />
+                        <ui:ScrollView name="inputView" nested-interaction-kind="Default" horizontal-scroller-visibility="Hidden" class="input-field-color inputView">
+                            <ui:TextField label="Text Field" name="inputText" multiline="true" readonly="false" is-delayed="true" max-length="9999" password="false" class="input-field-color input-field-overrider input-label-overrider solace-InputText" style="flex-grow: initial; flex-wrap: wrap; flex-shrink: 1; white-space: normal; flex-direction: column;" />
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-voice-options" class="divVoiceOptionsHolder" style="flex-grow: 1; overflow: visible; display: flex; height: 15%;">
+                        <ui:VisualElement name="div-stability" class="solaceVoiceOptions" style="max-width: 100%; max-height: 100%; margin-left: 2%;">
+                            <ui:Slider picking-mode="Ignore" label="Stability" value="0.75" high-value="1" show-input-field="true" name="stability" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="div-similarity" class="solaceVoiceOptions" style="margin-left: 2%;">
+                            <ui:Slider picking-mode="Ignore" label="Similarity Boost" value="0.75" high-value="1" show-input-field="true" name="similarity" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="div-voice-selection" class="solaceVoiceOptions" style="margin-left: 2%; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+                            <ui:DropdownField label="Voice" index="0" choices="Rachel,Domi,Bella,Antoni,Elli,Josh,Arnold,Adam,Sam" name="voice-selection" class="solaceVoiceOptions" style="height: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-submit-holder" class="divSubmit-Holder" style="flex-direction: row-reverse; flex-grow: 1; display: flex;">
+                        <ui:Button text="Submit" display-tooltip-when-elided="true" name="submit-button" class="submitButton" style="max-width: none; white-space: nowrap; -unity-text-align: middle-center; align-items: stretch; justify-content: flex-start; min-width: auto;" />
+                        <ui:VisualElement name="loading-holder" class="loadingholder" style="width: 32px; height: 32px;">
+                            <ui:VisualElement name="loading-wheel" class="loadingWheel" style="background-image: resource(&apos;loading_wheel_full&apos;); width: 32px; height: 32px; rotate: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="div-output-holder" class="divOutputHolder" style="height: 85%;">
+                        <ui:VisualElement name="save-holder" class="solaceSaveHolder" style="align-items: stretch; justify-content: flex-end;">
+                            <ui:TextField picking-mode="Ignore" label="New Asset Name:" name="save-name" max-length="100" class="solaceSaveName" />
+                            <ui:VisualElement name="save-folder" class="solaceSaveFolder">
+                                <ui:Button text="Save" display-tooltip-when-elided="true" name="save-asset" class="solaceSaveButton" style="flex-grow: 1; width: 10%;" />
+                                <ui:TextField picking-mode="Ignore" value="filler text" text="Assets/" name="save-path-field" class="solaceSaveFilePath" />
+                                <ui:Button text="Choose Folder" display-tooltip-when-elided="true" name="set-save-path" class="solaceSetFilePathButton" style="flex-grow: 1;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label display-tooltip-when-elided="true" name="output-text" class="solaceOutputText" />
+                        <ui:VisualElement name="image-holder" class="solaceImageHolder" style="flex-grow: 1; height: auto;">
+                            <ui:VisualElement name="output-image" class="solaceOutputImage" style="align-items: center; justify-content: center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>
