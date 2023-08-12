@@ -1,16 +1,20 @@
-﻿using RingInWater.View;
-using System;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RingInWater.UI
 {
-    public class GameWindow : AbstractWindow
+    /// <summary>
+    /// HUD, который используется прямо в игре.
+    /// </summary>
+    public class GameWindow : InGameWindow
     {
         [SerializeField] private float leftTimeAfterClick = 0.2f;
         [SerializeField] private Button leftBubbleButton = null;
         [SerializeField] private Button rightBubbleButton = null;
         [SerializeField] private Button pauseButton = null;
+        [SerializeField] private TextMeshProUGUI timeTextFiled = null;
 
         private class ButtonWithDelay
         {
@@ -31,7 +35,6 @@ namespace RingInWater.UI
             {
                 this.clicked = null;
             }
-
             public ButtonWithDelay(Button button, float leftTimeAfterClick)
             {
                 this.leftTimeAfterClick = leftTimeAfterClick;
@@ -50,7 +53,10 @@ namespace RingInWater.UI
         {
             this.bubbleCreated?.Invoke(pointIndex);
         }
-
+        public void SetTime(int time)
+        {
+            this.timeTextFiled.text = $"{time}";
+        }
         protected override void OnCreate()
         {
             this.leftBubbleButtonWithDelay = new ButtonWithDelay(this.leftBubbleButton, this.leftTimeAfterClick);

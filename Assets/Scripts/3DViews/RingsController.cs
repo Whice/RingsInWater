@@ -39,6 +39,13 @@ namespace RingInWater.View
         [SerializeField] private AnimationCurve curveRingsExplosion = null;
 
         /// <summary>
+        /// Колчество колец в игре.
+        /// </summary>
+        public int maxRingsCount
+        {
+            get => this.ringsCount;
+        }
+        /// <summary>
         /// Контроллер пузырей.
         /// </summary>
         private BubbleSpawner bubbleSpawner
@@ -294,10 +301,13 @@ namespace RingInWater.View
         {
             foreach (RingView ringView in this.ringViews)
             {
-                ringView.ResetView();
-                ringView.SetActive(false);
-                ringView.transform.SetParent(this.transform, true);
-                this.createdRingViews.Push(ringView);
+                if (ringView != null)
+                {
+                    ringView.ResetView();
+                    ringView.SetActive(false);
+                    ringView.transform.SetParent(this.transform, true);
+                    this.createdRingViews.Push(ringView);
+                }
             }
             CreateRings();
         }

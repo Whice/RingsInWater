@@ -1,12 +1,13 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RingInWater.UI
 {
-    public class PauseWindow : InGameWindow
+    public class WinLooseWindow : InGameWindow
     {
-        [SerializeField] private Button continueButton = null;
+        [SerializeField] private TextMeshProUGUI winLooseTextField = null;
         [SerializeField] private Button restartButton = null;
         [SerializeField] private Button toMenuButton = null;
 
@@ -16,15 +17,17 @@ namespace RingInWater.UI
             this.gameRestared?.Invoke();
             OpenWindow(typeof(GameWindow));
         }
+        public void SetWinLooseText(bool isWin)
+        {
+            this.winLooseTextField.text = isWin ? "Вы победили!" : "Вы проиграли!";
+        }
         protected override void OnCreate()
         {
-            this.continueButton.onClick.AddListener(() => OpenWindow(typeof(GameWindow)));
             this.restartButton.onClick.AddListener(OnGameRestarted);
             this.toMenuButton.onClick.AddListener(() => OpenWindow(typeof(MainMenuWindow)));
         }
         protected override void OnWindowDestroy()
         {
-            this.continueButton.onClick.RemoveAllListeners();
             this.restartButton.onClick.RemoveAllListeners();
             this.toMenuButton.onClick.RemoveAllListeners();
         }

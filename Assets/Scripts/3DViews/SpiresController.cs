@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace RingInWater.View
 {
@@ -12,6 +13,20 @@ namespace RingInWater.View
             get => this.spiresPrivate;
         }
         public Vector3[] spiresPositions { get; private set; }
+        /// <summary>
+        /// Количество колец на шпилях изменилось.
+        /// В аргументе количество колец.
+        /// </summary>
+        public event Action<int> ringsOnSpiresCountChanged;
+        private void OnRingtoSpireAdded()
+        {
+            int count = 0;
+            foreach (SpireView spire in this.spires)
+            {
+                count += spire.ringsCount;
+            }
+            ringsOnSpiresCountChanged?.Invoke(count);
+        }
         private void CreateSpires()
         {
             this.spiresPositions = new Vector3[spirePoints.Length];
@@ -20,8 +35,10 @@ namespace RingInWater.View
             {
                 this.spiresPrivate[i] = InstantiateWithInject(spireTemplate, spirePoints[i]);
                 this.spiresPositions[i] = this.spiresPrivate[i].transform.position;
+                this.spiresPrivate[i].ringAdded += OnRingtoSpireAdded;
             }
         }
+
         public void ResetSpires()
         {
             foreach(SpireView spireView in spiresPrivate)

@@ -138,6 +138,7 @@ namespace RingInWater.View
             this.selfRigidbody.maxAngularVelocity = 3f;
             this.ringCenterView.ringEnteredSpireChanged += OnRingEnteredSpireChanged;
             this.originalColor = this.ringMaterial.GetColor("_BaseColor");
+            ResetView();
         }
         private void OnDestroy()
         {
