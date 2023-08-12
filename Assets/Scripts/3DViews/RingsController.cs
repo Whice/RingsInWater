@@ -3,21 +3,51 @@ using UnityEngine;
 
 namespace RingInWater.View
 {
+    /// <summary>
+    /// Скрипт контролирующий жизненый цикл колец.
+    /// </summary>
     public class RingsController : InitilizableView
     {
         [SerializeField] private int ringsCount = 3;
+        /// <summary>
+        /// Границы случайного положения колец при их создании.
+        /// </summary>
         [SerializeField] private Vector2 randomPositionsRange = Vector2.one;
         [SerializeField] private RingView ringViewTemplate = null;
-        [SerializeField] private float rangeOfLocation = 10f;
+        /// <summary>
+        /// Минимальное расстояние между кольцами при создании.
+        /// </summary>
+        [SerializeField] private float minDistanceBetweenRigns = 10f;
 
-        [Header("Explode")]
+        /// <summary>
+        /// Радиус взрыва для колец.
+        /// </summary>
+        [Header("Explosion")]
         [SerializeField] private float explosionRadius = 5f;
-        [SerializeField] private float force = 5f;
+        /// <summary>
+        /// Сила взрыва для колец.
+        /// </summary>
+        [SerializeField] private float explosionForce = 5f;
 
+        /// <summary>
+        /// Максимальное расстояние между кольцами, 
+        /// на котором будет происходить взрыв между ними.
+        /// </summary>
+        [Header("Explosion between rigns")]
+        [SerializeField] private float maxRingsExplosionDistance = 2f;
+        [SerializeField] private float forceRingsExplosion = 2f;
+        [SerializeField] private AnimationCurve curveRingsExplosion = null;
+
+        /// <summary>
+        /// Контроллер пузырей.
+        /// </summary>
         private BubbleSpawner bubbleSpawner
         {
             get => this.roomController.bubbleSpawner;
         }
+        /// <summary>
+        /// Контроллер шпилей.
+        /// </summary>
         private SpiresController spiresController
         {
             get => this.roomController.spiresController;
@@ -63,7 +93,7 @@ namespace RingInWater.View
             return newView;
         }
         /// <summary>
-        /// Проверить пересечение Объектов.
+        /// Проверить пересечение колец.
         /// </summary>
         /// <param name="view1"></param>
         /// <param name="view2"></param>
@@ -74,7 +104,7 @@ namespace RingInWater.View
             Transform t2 = view2.transform;
 
             //Установить относительный размер, по которому будет учитываться разница растояния между кольцами
-            float ralatedSize = t1.localScale.x * this.rangeOfLocation;
+            float ralatedSize = t1.localScale.x * this.minDistanceBetweenRigns;
             if (t1 != null && t2 != null)
             {
                 float distanceX = Mathf.Abs(t1.localPosition.x - t2.localPosition.x);
@@ -180,7 +210,41 @@ namespace RingInWater.View
 
         #region Explosion
 
+        /// <summary>
+        /// Тела колец.
+        /// </summary>
         private Rigidbody[] ringsBodies;
+        /// <summary>
+        /// Создать взырв для кольца относительно положения прочих колец.
+        /// Чем они ближе, тем сильнее их воздействие на это кольцо.
+        /// </summary>
+        /// <param name="ringbody"></param>
+        private void CreateExplosionBetweenRings(Rigidbody ringbody)
+        {
+            foreach(Rigidbody rigidbody in this.ringsBodies)
+            {
+                if (ringbody != rigidbody)
+                {
+                    //Найти расстояние
+                    Transform theirTransform = rigidbody.transform;
+                    Transform myTransfrom = ringbody.transform;
+                    //Для отталкивания нужено отнимать так.
+                    Vector3 distanceVector = myTransfrom.position- theirTransform.position;
+                    float distance = distanceVector.magnitude;
+                    float relativeDistance = distance / this.maxRingsExplosionDistance;
+                    float explosionForceBydistance = this.curveRingsExplosion.Evaluate(relativeDistance);
+
+                    //Найти направление
+                    Vector3 direction = distanceVector.normalized;
+
+                    //Получить силу взрыва
+                    Vector3 explosionForce = direction * explosionForceBydistance * this.forceRingsExplosion;
+
+                    //Применить силу
+                    ringbody.AddForce(explosionForce, ForceMode.Force);
+                }
+            }
+        }
         /// <summary>
         /// Применить взыв к кольцам, чтобы они подлетели вверх.
         /// </summary>
@@ -189,10 +253,11 @@ namespace RingInWater.View
         {
             for (int i = 0; i < this.ringsBodies.Length; i++)
             {
-                Rigidbody rigidbody = ringsBodies[i];
+                Rigidbody rigidbody = this.ringsBodies[i];
                 if (rigidbody != null)
                 {
-                    rigidbody.AddExplosionForce(this.force, position, this.explosionRadius);
+                    rigidbody.AddExplosionForce(this.explosionForce, position, this.explosionRadius);
+                    CreateExplosionBetweenRings(rigidbody);
                     float delta = rigidbody.transform.position.x - position.x;
                     float direction = delta / Mathf.Abs(delta);
                     delta = (10 - Mathf.Abs(delta)) * direction * 50;
@@ -222,15 +287,9 @@ namespace RingInWater.View
             Explode(this.bubbleSpawnPoints[number].transform.position);
         }
 
-        public void AddForceFromPoint1()
-        {
-            AddForceFromPoint(0);
-        }
-        public void AddForceFromPoint2()
-        {
-            AddForceFromPoint(1);
-        }
-
+        /// <summary>
+        /// Сбросить всю инфу о кольцах и пересоздать их.
+        /// </summary>
         public void ResetRings()
         {
             foreach (RingView ringView in this.ringViews)

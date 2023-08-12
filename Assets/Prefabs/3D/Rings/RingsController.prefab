@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134981125710203171}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0, z: 1}
@@ -32,7 +33,6 @@ Transform:
   - {fileID: 8837735557729845104}
   - {fileID: 5783890790479486848}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5648391588055373120
 MonoBehaviour:
@@ -50,9 +50,53 @@ MonoBehaviour:
   randomPositionsRange: {x: 10, y: 25}
   ringViewTemplate: {fileID: 5422956876714831150, guid: d29b281a1e0ad4949b7ba590d6e5191e,
     type: 3}
-  rangeOfLocation: 3
-  explosionRadius: 35
-  force: 1000
+  minDistanceBetweenRigns: 2
+  explosionRadius: 40
+  explosionForce: 750
+  maxRingsExplosionDistance: 5
+  forceRingsExplosion: 500
+  curveRingsExplosion:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.004638672
+      value: 0.99905396
+      inSlope: -0.22103158
+      outSlope: -0.22103158
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.45345268
+    - serializedVersion: 3
+      time: 0.35300848
+      value: 0.68242085
+      inSlope: -2.175814
+      outSlope: -2.175814
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.58956057
+      value: 0.070207685
+      inSlope: -0.36023697
+      outSlope: -0.18334575
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.14424798
+    - serializedVersion: 3
+      time: 0.993042
+      value: -0.003768921
+      inSlope: -0.32058644
+      outSlope: 2
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.11943368
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3508400022391673827
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,13 +120,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3508400022391673827}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1046734119382598467}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7739703063739960235
 GameObject:
@@ -107,11 +151,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7739703063739960235}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1046734119382598467}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
