@@ -13,6 +13,14 @@ namespace RingInWater.View
         [SerializeField] private float ringOnSpireDisablePhisicsTime = 1f;
         [SerializeField] private MeshRenderer ringMeshRenderer = null;
         [SerializeField] private float durationColorChanged = 1f;
+        [SerializeField] private Vector3 ringSizePrivate = Vector3.one;
+        /// <summary>
+        /// Разрмер view кольца в пространстве.
+        /// </summary>
+        public Vector3 ringSize
+        {
+            get => this.ringSizePrivate;
+        }
         private Material ringMaterial
         {
             get => this.ringMeshRenderer.material;

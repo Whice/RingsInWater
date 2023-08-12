@@ -29,6 +29,7 @@ namespace RingInWater.View
         public void ResetGame()
         {
             this.ringsController.ResetRings();
+            this.spiresController.ResetSpires();
         }
         private void Start()
         {

@@ -22,6 +22,13 @@ namespace RingInWater.View
                 this.spiresPositions[i] = this.spiresPrivate[i].transform.position;
             }
         }
+        public void ResetSpires()
+        {
+            foreach(SpireView spireView in spiresPrivate)
+            {
+                spireView.ResetSpire();
+            }
+        }
         public override void Initilize(RoomController roomController)
         {
             base.Initilize(roomController);

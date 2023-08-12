@@ -296,6 +296,7 @@ namespace RingInWater.View
             {
                 ringView.ResetView();
                 ringView.SetActive(false);
+                ringView.transform.SetParent(this.transform, true);
                 this.createdRingViews.Push(ringView);
             }
             CreateRings();
