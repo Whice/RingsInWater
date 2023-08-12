@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c616b5132d70534bad4225815b51073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringStopDuration: 2
   spireView: {fileID: 4834947286886180806}
 --- !u!1 &3125850986325641416
 GameObject:
@@ -254,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 3638793329690587169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -306,6 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d99b8fc955bd2f4799e32f43d386e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ringMinPosition: {fileID: 0}
+  ringStopDuration: 2
 --- !u!1 &8696532079459686724
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using RingInWater.Utility;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace RingInWater.View
 {
@@ -30,6 +31,19 @@ namespace RingInWater.View
         {
             ringViews.Clear();
         }
+        private float GetEndRotateForAxis(float axisRotateValue)
+        {
+            if (axisRotateValue > 90 && axisRotateValue < 270)
+            {
+                return 180;
+            }
+            else if (axisRotateValue > 270)
+            {
+                return 360;
+            }
+
+            return 0;
+        }
         /// <summary>
         /// Добавить кольцо на палку шпиля, чтобы оно осталось тут навсегда.
         /// </summary>
@@ -44,15 +58,14 @@ namespace RingInWater.View
                 Vector3 ringRotation = ringView.transform.rotation.eulerAngles;
                 ringView.transform.rotation = Quaternion.Euler(ringRotation.x % 360, ringRotation.y % 360, ringRotation.z % 360);
                 float ringRotationX = Mathf.Abs(ringRotation.x % 360);
+                float ringRotationZ = Mathf.Abs(ringRotation.z % 360);
                 int mult = ringRotation.x > 0 ? 1 : -1;
-                if (ringRotationX > 90 && ringRotationX < 270)
-                {
-                    zeroRotaion = new Vector3(180 * mult, 0, 0);
-                }
-                else if (ringRotationX > 270)
-                {
-                    zeroRotaion = new Vector3(360 * mult, 0, 0);
-                }
+                zeroRotaion = new Vector3
+                    (
+                    GetEndRotateForAxis(ringRotationX) * mult,
+                    0,
+                    GetEndRotateForAxis(ringRotationZ)
+                    );
             }
             ringView.transform.DOLocalRotate(zeroRotaion, this.ringStopDuration);
 
