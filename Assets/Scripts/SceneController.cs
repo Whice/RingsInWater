@@ -89,7 +89,7 @@ namespace RingInWater
 
         public void OnGameTimeEnded()
         {
-            this.winLooseWindow.SetWinLooseText(!this.gameData.isEndGame);
+            this.winLooseWindow.SetWinLooseText(!this.gameData.isEndGame, this.gameData.gameTimeLeft);
 
             this.windowsController.OpenWindow<WinLooseWindow>();
         }

@@ -8,6 +8,7 @@ namespace RingInWater.UI
     public class WinLooseWindow : InGameWindow
     {
         [SerializeField] private TextMeshProUGUI winLooseTextField = null;
+        [SerializeField] private TextMeshProUGUI winTimeTextField = null;
         [SerializeField] private Button restartButton = null;
         [SerializeField] private Button toMenuButton = null;
 
@@ -17,9 +18,11 @@ namespace RingInWater.UI
             this.gameRestared?.Invoke();
             OpenWindow(typeof(GameWindow));
         }
-        public void SetWinLooseText(bool isWin)
+        public void SetWinLooseText(bool isWin, int timeRemaining)
         {
             this.winLooseTextField.text = isWin ? "Вы победили!" : "Вы проиграли!";
+            this.winTimeTextField.text = $"Времени осталось: {timeRemaining}";
+            this.winTimeTextField.gameObject.SetActive(isWin);
         }
         protected override void OnCreate()
         {
