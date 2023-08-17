@@ -1,61 +1,41 @@
 ﻿using System;
-using UnityEngine;
 
 namespace RingInWater.Utility
 {
     /// <summary>
-    /// Создан для упрощения выдачи сообщений в консоль,
-    /// а также формирования своих.
+    /// Интерфейс для передачи логики логирования.
     /// </summary>
-    public class MonoBehaviourLogger : InjectableMonoBehaviour, ILogger
+    public interface ILogger
     {
         /// <summary>
         /// Вывести сообщение об ошибке в консоль.
         /// </summary>
         /// <param name="message"></param>
-        public void LogError(String message)
-        {
-            Debug.LogError(message);
-        }
+        void LogError(String message);
         /// <summary>
         /// Вывести сообщение об ошибке в консоль.
         /// </summary>
         /// <param name="message"></param>
-        public void LogError(object message)
-        {
-            Debug.LogError(message);
-        }
+        void LogError(object message);
         /// <summary>
         /// Вывести предупреждене в консоль.
         /// </summary>
         /// <param name="message"></param>
-        public void LogWarning(String message)
-        {
-            Debug.LogWarning(message);
-        }
+        void LogWarning(String message);
         /// <summary>
         /// Вывести предупреждене в консоль.
         /// </summary>
         /// <param name="message"></param>
-        public void LogWarning(object message)
-        {
-            Debug.LogWarning(message);
-        }
+        void LogWarning(object message);
         /// <summary>
         /// Вывести сообщение в консоль.
         /// </summary>
         /// <param name="message"></param>
-        public void LogInfo(String message)
-        {
-            Debug.Log(message);
-        }
+        void LogInfo(String message);
         /// <summary>
         /// Вывести сообщение в консоль.
         /// </summary>
         /// <param name="message"></param>
-        public void LogInfo(object message)
-        {
-            Debug.Log(message);
-        }
+        void LogInfo(object message);
     }
 }
