@@ -1,4 +1,5 @@
-﻿using RingInWater.Utility;
+﻿using Model;
+using RingInWater.Utility;
 using System.Collections;
 using UnityEngine;
 
@@ -7,13 +8,23 @@ namespace RingInWater.View
     /// <summary>
     /// Представление кольца.
     /// </summary>
-    public class RingView : MonoBehaviourLogger, IWaveMovable
+    public class RingView : MonoBehaviourLogger, IWaveMovable, IViewWithId
     {
+        [SerializeField] private RingViewId viewId = RingViewId.unknown;
+        /// <summary>
+        /// Визуальная часть центра кольца.
+        /// Нужна для определения надевания кольца на шпиль.
+        /// </summary>
         [SerializeField] private RingCenterView ringCenterView = null;
         [SerializeField] private float ringOnSpireDisablePhisicsTime = 1f;
         [SerializeField] private MeshRenderer ringMeshRenderer = null;
         [SerializeField] private float durationColorChanged = 1f;
         [SerializeField] private Vector3 ringSizePrivate = Vector3.one;
+
+        public int idInt
+        {
+            get => (int)viewId;
+        }
         /// <summary>
         /// Разрмер view кольца в пространстве.
         /// </summary>

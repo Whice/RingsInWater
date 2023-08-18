@@ -1,17 +1,17 @@
 ﻿using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
-using ModestTree;
+using Model;
 using RingInWater.Utility;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace RingInWater.View
 {
-    public class SpireView : MonoBehaviourLogger
+    public class SpireView : MonoBehaviourLogger, IViewWithId
     {
+        [SerializeField] private SpiresViewId viewId = SpiresViewId.unknown;
         /// <summary>
         /// Минимальная высота, на которую опуститься кольцо,
         /// когда оно попадет на шпиль.
@@ -21,6 +21,11 @@ namespace RingInWater.View
         /// Длительность приведения кольца к егго конечному положению.
         /// </summary>
         [SerializeField] private float ringStopDuration = 2f;
+
+        public int idInt
+        {
+            get => (int)viewId;
+        }
 
 
         private List<RingView> ringViews = new List<RingView>();
