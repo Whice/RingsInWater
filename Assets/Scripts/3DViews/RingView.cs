@@ -84,6 +84,11 @@ namespace RingInWater.View
                 StartCoroutine(SetWhite());
             }
         }
+
+        public bool isRingOnSpire
+        {
+            get => this.ringCenterView.isRingOnSpire;
+        }
         /// <summary>
         /// Обработать выход/попадание кольца на шпиль.
         /// </summary>

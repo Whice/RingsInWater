@@ -31,6 +31,14 @@ namespace RingInWater.View
         /// Сила взрыва для колец.
         /// </summary>
         [SerializeField] private float explosionForce = 5f;
+        /// <summary>
+        /// Дальность дополнительного толчка в бок.
+        /// </summary>
+        [SerializeField] private float rangeOfAdditionalPushToSide = 10f;
+        /// <summary>
+        /// Сила дополнительного толчка в бок.
+        /// </summary>
+        [SerializeField] private float forceOfAdditionalPushToSide = 50f;
 
         /// <summary>
         /// Максимальное расстояние между кольцами, 
@@ -266,18 +274,23 @@ namespace RingInWater.View
         {
             for (int i = 0; i < this.ringsBodies.Length; i++)
             {
-                Rigidbody rigidbody = this.ringsBodies[i];
-                if (rigidbody != null)
+                if (!this.ringViews[i].isRingOnSpire)
                 {
-                    rigidbody.AddExplosionForce(this.explosionForce, position, this.explosionRadius);
-                    CreateExplosionBetweenRings(rigidbody);
-                    float delta = rigidbody.transform.position.x - position.x;
-                    float direction = delta / Mathf.Abs(delta);
-                    delta = (10 - Mathf.Abs(delta)) * direction * 50;
-                    if (delta > 0)
+                    Rigidbody rigidbody = this.ringsBodies[i];
+                    if (rigidbody != null)
                     {
-                        rigidbody.AddForce(delta, 0, 0, ForceMode.Force);
-                        this.ringViews[i].OnForceAdded();
+                        rigidbody.AddExplosionForce(this.explosionForce, position, this.explosionRadius);
+                        CreateExplosionBetweenRings(rigidbody);
+                        float delta = rigidbody.transform.position.x - position.x;
+                        float absDelta = Mathf.Abs(delta);
+                        float direction = delta / absDelta;
+                        delta = (this.rangeOfAdditionalPushToSide - absDelta);
+                        if (delta > 0)
+                        {
+                            delta *= direction * this.forceOfAdditionalPushToSide;
+                            rigidbody.AddForce(delta, 0, 0, ForceMode.Force);
+                            this.ringViews[i].OnForceAdded();
+                        }
                     }
                 }
             }
