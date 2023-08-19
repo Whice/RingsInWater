@@ -99,7 +99,7 @@ namespace RingInWater.View
                 Vector3 endPosition = new Vector3
                             (
                             this.transform.position.x,
-                            this.transform.position.y + ringView.ringSize.y * this.ringViews.Count,
+                            this.ringMinPosition.position.y + ringView.ringSize.y * this.ringViews.Count,
                             this.transform.position.z
                             );
                 this.twinsMove.Add(ringView.transform.DOMove(endPosition, this.ringStopDuration));

@@ -786,6 +786,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+    - target: {fileID: 3165030999688693236, guid: 010c6ab6687e21446b35171bf34b791b,
+        type: 3}
+      propertyPath: defalutView
+      value: 10001
+      objectReference: {fileID: 0}
     - target: {fileID: 3585544325061622681, guid: 010c6ab6687e21446b35171bf34b791b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -885,6 +890,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658650746977238365, guid: 010c6ab6687e21446b35171bf34b791b,
+        type: 3}
+      propertyPath: ringsCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658650746977238365, guid: 010c6ab6687e21446b35171bf34b791b,
+        type: 3}
+      propertyPath: defaultView
+      value: 10001
       objectReference: {fileID: 0}
     - target: {fileID: 7395635685705703682, guid: 010c6ab6687e21446b35171bf34b791b,
         type: 3}

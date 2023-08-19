@@ -13,5 +13,6 @@
         test = 1,
 
         corall = 10_000,
+        yellowNeon = 10_001,
     }
 }
