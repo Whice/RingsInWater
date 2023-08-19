@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Model;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace RingInWater.View
 {
@@ -8,6 +10,7 @@ namespace RingInWater.View
     /// </summary>
     public class RingsController : InitilizableView
     {
+        public RingViewId defaultView = RingViewId.corall;
         [SerializeField] private int ringsCount = 3;
         /// <summary>
         /// Границы случайного положения колец при их создании.
@@ -37,6 +40,8 @@ namespace RingInWater.View
         [SerializeField] private float maxRingsExplosionDistance = 2f;
         [SerializeField] private float forceRingsExplosion = 2f;
         [SerializeField] private AnimationCurve curveRingsExplosion = null;
+
+        [Inject] private AllViewsProvider allViewsProvider = null;
 
         /// <summary>
         /// Колчество колец в игре.
@@ -90,7 +95,8 @@ namespace RingInWater.View
             RingView newView = null;
             if (this.createdRingViews.Count == 0)
             {
-                newView = InstantiateWithInject(this.ringViewTemplate, this.transform);
+                RingView template = this.allViewsProvider.GetRingView(this.defaultView);
+                newView = InstantiateWithInject(template, this.transform);
                 newView.SetActive(false);
                 this.createdRingViews.Push(newView);
             }

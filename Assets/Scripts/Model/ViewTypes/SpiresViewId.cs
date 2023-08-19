@@ -11,5 +11,7 @@
     {
         unknown = 0,
         test = 1,
+
+        corall = 10_000,
     }
 }

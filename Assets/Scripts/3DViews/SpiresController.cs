@@ -1,12 +1,18 @@
-﻿using System;
+﻿using Model;
+using System;
 using UnityEngine;
+using Zenject;
 
 namespace RingInWater.View
 {
     public class SpiresController : InitilizableView
     {
+        public SpiresViewId defalutView = SpiresViewId.corall;
         [SerializeField] private SpireView spireTemplate = null;
         [SerializeField] private Transform[] spirePoints = new Transform[0];
+
+        [Inject] private AllViewsProvider allViewsProvider = null;
+
         private SpireView[] spiresPrivate;
         public SpireView[] spires
         {
@@ -33,7 +39,8 @@ namespace RingInWater.View
             this.spiresPrivate = new SpireView[spirePoints.Length];
             for (int i = 0; i < spirePoints.Length; i++)
             {
-                this.spiresPrivate[i] = InstantiateWithInject(spireTemplate, spirePoints[i]);
+                SpireView template = this.allViewsProvider.GetSpireView(this.defalutView);
+                this.spiresPrivate[i] = InstantiateWithInject(template, this.spirePoints[i]);
                 this.spiresPositions[i] = this.spiresPrivate[i].transform.position;
                 this.spiresPrivate[i].ringAdded += OnRingtoSpireAdded;
             }

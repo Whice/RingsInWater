@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 
 namespace RingInWater.Utility
 {
-    
-        public class TSVLoader
+
+    public class TSVLoader
         {
             public enum Format
             {
