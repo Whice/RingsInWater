@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1719482205618897311}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -543,7 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRememberForBack: 1
   playButton: {fileID: 1968803053122458173}
-  storeButton: {fileID: 8259497736971590024}
+  collectionButton: {fileID: 0}
   exitButton: {fileID: 2166462805428156976}
 --- !u!1001 &7203274421081208487
 PrefabInstance:
@@ -561,7 +560,7 @@ PrefabInstance:
     - target: {fileID: 3622014735564681582, guid: 787c348600fab8641bd35b45a558832a,
         type: 3}
       propertyPath: m_Name
-      value: Store
+      value: Collection
       objectReference: {fileID: 0}
     - target: {fileID: 3664056961585540155, guid: 787c348600fab8641bd35b45a558832a,
         type: 3}
@@ -684,15 +683,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7203274421081208487}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8259497736971590024 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1254404803202019119, guid: 787c348600fab8641bd35b45a558832a,
-    type: 3}
-  m_PrefabInstance: {fileID: 7203274421081208487}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

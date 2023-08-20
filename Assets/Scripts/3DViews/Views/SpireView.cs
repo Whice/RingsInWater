@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace RingInWater.View
 {
-    public class SpireView : MonoBehaviourLogger, IViewWithId
+    public class SpireView : ViewWithId
     {
         [SerializeField] private SpiresViewId viewId = SpiresViewId.unknown;
         /// <summary>
@@ -22,7 +22,7 @@ namespace RingInWater.View
         /// </summary>
         [SerializeField] private float ringStopDuration = 2f;
 
-        public int idInt
+        public override int idInt
         {
             get => (int)viewId;
         }

@@ -5,10 +5,14 @@ using UnityEngine;
 
 namespace RingInWater.View
 {
+    /// <summary>
+    /// Поставщик всех провайдеров или их данных.
+    /// </summary>
     public class AllViewsProvider : MonoBehaviourLogger
     {
         [SerializeField] private RingsViewProvider ringsViewProvider = null;
         [SerializeField] private SpiresViewProvider spiresViewProvider = null;
+        [SerializeField] private CollectionEntitiesProvider collectionEntitiesProvider = null;
 
         public RingView GetRingView(RingViewId ringViewId)
         {
@@ -18,9 +22,29 @@ namespace RingInWater.View
         {
             return this.spiresViewProvider.GetViewByID((int)spiresViewId);
         }
+        public CollectionEntitiesProvider GetCollectionEntitiesProvider()
+        {
+            return this.collectionEntitiesProvider;
+        }
 
+        /// <summary>
+        /// Проверить ссылку на наличие, ругаться, если не задана.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="chekable"></param>
+        private void NullCheck(string name, Object chekable)
+        {
+            if (chekable== null)
+            {
+                LogError($"{name} in all views provider is null!");
+            }
+        }
         private void CheckByUnknown()
         {
+            NullCheck(nameof(this.ringsViewProvider), this.ringsViewProvider);
+            NullCheck(nameof(this.spiresViewProvider), this.spiresViewProvider);
+            NullCheck(nameof(this.collectionEntitiesProvider), this.collectionEntitiesProvider);
+
             foreach (RingView view in this.ringsViewProvider.viewsArray)
             {
                 if (view.idInt == 0)
@@ -35,6 +59,7 @@ namespace RingInWater.View
                     LogError($"Spire view with name: {view.name} isn't set id!");
                 }
             }
+            this.collectionEntitiesProvider.CheckByUnknown();
         }
         private void Awake()
         {

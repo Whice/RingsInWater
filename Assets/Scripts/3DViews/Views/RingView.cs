@@ -8,7 +8,7 @@ namespace RingInWater.View
     /// <summary>
     /// Представление кольца.
     /// </summary>
-    public class RingView : MonoBehaviourLogger, IWaveMovable, IViewWithId
+    public class RingView : ViewWithId, IWaveMovable
     {
         [SerializeField] private RingViewId viewId = RingViewId.unknown;
         /// <summary>
@@ -21,7 +21,7 @@ namespace RingInWater.View
         [SerializeField] private float durationColorChanged = 1f;
         [SerializeField] private Vector3 ringSizePrivate = Vector3.one;
 
-        public int idInt
+        public override int idInt
         {
             get => (int)viewId;
         }

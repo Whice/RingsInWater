@@ -7,7 +7,7 @@ namespace RingInWater.UI
     public class MainMenuWindow : AbstractWindow
     {
         [SerializeField] private Button playButton = null;
-        [SerializeField] private Button storeButton = null;
+        [SerializeField] private Button collectionButton = null;
         [SerializeField] private Button exitButton = null;
 
         public event Action playStarted;

@@ -40,6 +40,13 @@ namespace RingInWater.UI
         }
 
         /// <summary>
+        /// Открыть окно, которое было открыто перед нынешним.
+        /// </summary>
+        public bool OpenPreviousWindow()
+        {
+            return this.windowsController.OpenPreviousWindow();
+        }
+        /// <summary>
         /// Инициализировать окно данными при его активации.
         /// </summary>
         protected virtual void OnOpen() { }

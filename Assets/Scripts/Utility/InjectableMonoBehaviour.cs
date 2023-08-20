@@ -7,7 +7,7 @@ namespace RingInWater.Utility
     /// Объект для инстанцирования со специальными методами
     /// для zenject.
     /// </summary>
-    public class InjectableMonoBehaviour : MonoBehaviour
+    public class InjectableMonoBehaviour : MonoBehaviourAdditionals
     {
         [Inject] private DiContainer diContainer;
         /// <summary>

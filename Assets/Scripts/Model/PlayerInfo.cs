@@ -69,11 +69,25 @@ namespace Model
         /// <summary>
         /// Доступные игроку виды колец.
         /// </summary>
-        private List<int> ringTypesAvailableToPlayer  = new List<int>();
+        private HashSet<int> ringTypesAvailableToPlayer  = new HashSet<int>();
+        /// <summary>
+        /// Указанный ID доступен.
+        /// </summary>
+        public bool IsRingAvailable(RingViewId ringViewId)
+        {
+            return this.ringTypesAvailableToPlayer.Contains((int)ringViewId);
+        }
         /// <summary>
         /// Доступные игроку виды колец.
         /// </summary>
-        private List<int> spiresTypesAvailableToPlayer = new List<int>();
+        private HashSet<int> spiresTypesAvailableToPlayer = new HashSet<int>();
+        /// <summary>
+        /// Указанный ID доступен.
+        /// </summary>
+        public bool IsSpireAvailable(SpiresViewId spiresViewId)
+        {
+            return this.spiresTypesAvailableToPlayer.Contains((int)spiresViewId);
+        }
 
         /// <summary>
         /// Добавить новый ид в список доступных игроку представлений.
