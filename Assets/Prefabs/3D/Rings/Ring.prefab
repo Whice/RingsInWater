@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830d8ad8bfaf3e740a43a670b4492f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewId: 1
   ringCenterView: {fileID: 3201533208813253179}
   ringOnSpireDisablePhisicsTime: 3
   ringMeshRenderer: {fileID: 8661954663450737464}

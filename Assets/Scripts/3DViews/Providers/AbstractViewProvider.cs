@@ -30,7 +30,7 @@ namespace RingInWater.View.Providers
             {
                 if (this.viewsDictionary.ContainsKey(view.idInt))
                 {
-                    Debug.LogError("Key dublicate in view prodiver!");
+                    Debug.LogError($"Key dublicate in {this.name}!");
                 }
                 else
                 {

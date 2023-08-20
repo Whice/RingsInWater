@@ -18,5 +18,27 @@ namespace RingInWater.View
         {
             return this.spiresViewProvider.GetViewByID((int)spiresViewId);
         }
+
+        private void CheckByUnknown()
+        {
+            foreach (RingView view in this.ringsViewProvider.viewsArray)
+            {
+                if (view.idInt == 0)
+                {
+                    LogError($"Ring view with name: {view.name} isn't set id!");
+                }
+            }
+            foreach (SpireView view in this.spiresViewProvider.viewsArray)
+            {
+                if (view.idInt == 0)
+                {
+                    LogError($"Spire view with name: {view.name} isn't set id!");
+                }
+            }
+        }
+        private void Awake()
+        {
+            CheckByUnknown();
+        }
     }
 }

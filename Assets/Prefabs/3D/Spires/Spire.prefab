@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d99b8fc955bd2f4799e32f43d386e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewId: 0
+  viewId: 1
   ringMinPosition: {fileID: 2057088838013484652}
   ringStopDuration: 2
 --- !u!1 &8696532079459686724
