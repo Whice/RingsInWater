@@ -31,5 +31,12 @@ namespace RingInWater.Utility
         {
             return diContainer.InstantiatePrefab(objectTemplate);
         }
+        /// <summary>
+        /// Создать объект с добавлением контейнера для внедерения зависимостей.
+        /// </summary>
+        protected GameObject InstantiateWithInject(GameObject objectTemplate, Transform parent)
+        {
+            return diContainer.InstantiatePrefab(objectTemplate, parent);
+        }
     }
 }

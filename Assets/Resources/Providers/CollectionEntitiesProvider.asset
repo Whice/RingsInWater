@@ -16,31 +16,37 @@ MonoBehaviour:
   - iconPrivate: {fileID: 21300000, guid: aee770a5d1ba3114e8998c7c39edb5d9, type: 3}
     colorPrivate: {r: 1, g: 1, b: 1, a: 1}
     namePrivate: "\u041A\u043E\u0440\u0430\u043B\u043B"
-    viewWithId: {fileID: 0}
+    viewWithId: {fileID: 1147331486903432183, guid: 7c152fe8968399142b9e31e9dcc084be,
+      type: 3}
     spiresViewId: 10000
   - iconPrivate: {fileID: 0}
     colorPrivate: {r: 1, g: 0.9097158, b: 0, a: 1}
     namePrivate: "\u0416\u0435\u043B\u0442\u044B\u0439 \u043D\u0435\u043E\u043D"
-    viewWithId: {fileID: 0}
+    viewWithId: {fileID: 6388081532517811303, guid: e99a051e14064d546ac22f4ddd9c9a6a,
+      type: 3}
     spiresViewId: 10001
   - iconPrivate: {fileID: 21300000, guid: 5b5f410f5d59dc846b76ec227dca7b12, type: 3}
     colorPrivate: {r: 1, g: 1, b: 1, a: 1}
     namePrivate: "\u0422\u0435\u0441\u0442"
-    viewWithId: {fileID: 0}
+    viewWithId: {fileID: 7991079654713643644, guid: 2a6c62ce83de06a428f1a7df592d3387,
+      type: 3}
     spiresViewId: 1
   collectionRings:
   - iconPrivate: {fileID: 21300000, guid: aee770a5d1ba3114e8998c7c39edb5d9, type: 3}
     colorPrivate: {r: 1, g: 1, b: 1, a: 1}
     namePrivate: "\u041A\u043E\u0440\u0430\u043B\u043B"
-    viewWithId: {fileID: 0}
+    viewWithId: {fileID: 7618525977978862292, guid: 2a74582c0b92acf4b8674df8d41b4cd7,
+      type: 3}
     ringViewId: 10000
   - iconPrivate: {fileID: 0}
     colorPrivate: {r: 1, g: 0.91437024, b: 0, a: 1}
     namePrivate: "\u0416\u0435\u043B\u0442\u044B\u0439 \u043D\u0435\u043E\u043D"
-    viewWithId: {fileID: 0}
-    ringViewId: 10000
+    viewWithId: {fileID: 3812051655346820582, guid: e8ba879352b634d4eb636dcad0c9a9f3,
+      type: 3}
+    ringViewId: 10001
   - iconPrivate: {fileID: 21300000, guid: 5b5f410f5d59dc846b76ec227dca7b12, type: 3}
     colorPrivate: {r: 1, g: 0.91437024, b: 0, a: 1}
     namePrivate: "\u0422\u0435\u0441\u0442"
-    viewWithId: {fileID: 0}
+    viewWithId: {fileID: 5422956876714831150, guid: d29b281a1e0ad4949b7ba590d6e5191e,
+      type: 3}
     ringViewId: 1

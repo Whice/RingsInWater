@@ -31,6 +31,10 @@ namespace Model
         {
             get => this.namePrivate;
         }
+        public ViewWithId view
+        {
+            get => this.viewWithId;
+        }
         /// <summary>
         /// ID для внешнего вида.
         /// </summary>

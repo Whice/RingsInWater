@@ -127,7 +127,41 @@ namespace Model
 
         #endregion Ид представления колец и шпилей.
 
+        public CollectionModel collectionModel { get; private set; }
 
+        private void OnCollectionEntityChooseChanged(CollectionEntityType type, int id)
+        {
+            switch(type)
+            {
+                case CollectionEntityType.spire:
+                    {
+                        currentSpiresViewId = (SpiresViewId)id;
+                        break;
+                    }
+                case CollectionEntityType.ring:
+                    {
+                        currentRingViewId = (RingViewId)id;
+                        break;
+                    }
+                case CollectionEntityType.bubble:
+                    {
+                        break;
+                    }
+            }
+        }
+
+        private void Initilize()
+        {
+            this.collectionModel = new CollectionModel();
+            this.collectionModel.collectionEntityChooseChanged += OnCollectionEntityChooseChanged;
+        }
+
+        public PlayerInfo()
+        {
+            this.currentRingViewIdPrivate = RingViewId.test;
+            this.currentSpiresViewIdprivate = SpiresViewId.test;
+            Initilize();
+        }
 
         #region Save/Load
 
@@ -149,7 +183,9 @@ namespace Model
                 using (FileStream stream = File.OpenRead(savePath))
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    return (PlayerInfo)formatter.Deserialize(stream);
+                    PlayerInfo info = (PlayerInfo)formatter.Deserialize(stream);
+                    info.Initilize();
+                    return info;
                 }
             }
             else

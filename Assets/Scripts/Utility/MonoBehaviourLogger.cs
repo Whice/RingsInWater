@@ -57,5 +57,23 @@ namespace RingInWater.Utility
         {
             Debug.Log(message);
         }
+
+        /// <summary>
+        /// Проверить ссылку на объект на присутсвие.
+        /// <br/>Если ссылка нулевая, то выведется ошибка с именем объекта, которое было указано.
+        /// </summary>
+        /// <param name="checkableObject"></param>
+        /// <param name="objectName"></param>
+        /// <param name="isError">По умолчания - ошибка. Установить false, если не надо выводить ошибку в консоль.</param>
+        /// <returns>Если null, то true.</returns>
+        public bool IsNullCheck(object checkableObject, string objectName, bool isError = true)
+        {
+            if (isError && checkableObject == null)
+            {
+                LogError($"{objectName} is null!");
+            }
+
+            return checkableObject == null;
+        }
     }
 }

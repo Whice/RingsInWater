@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringsViewProvider: {fileID: 11400000, guid: 31ab847a1ffd7f54b96bcd7a61ebf487, type: 2}
   spiresViewProvider: {fileID: 11400000, guid: 044c820fcb80edc4ea5a538c57eb4715, type: 2}
+  collectionEntitiesProvider: {fileID: 11400000, guid: bde64987f5cfcd4489d363a90c9384c5,
+    type: 2}

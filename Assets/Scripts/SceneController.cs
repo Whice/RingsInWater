@@ -10,6 +10,7 @@ namespace RingInWater
     {
         [SerializeField] private WindowsController windowsController = null;
         [SerializeField] private RoomController roomController = null;
+        [SerializeField] private CollectionRoom collectionRoom = null;
         [SerializeField] private float timeForGame= 90;
 
         private class GameData
@@ -84,6 +85,7 @@ namespace RingInWater
         private PauseWindow pauseWindow;
         private GameWindow gameWindow;
         private WinLooseWindow winLooseWindow;
+        private CollectionWindow collectionWindow;
 
         private GameData gameData;
 
@@ -106,12 +108,15 @@ namespace RingInWater
             this.pauseWindow = this.windowsController.GetWindow<PauseWindow>();
             this.gameWindow = this.windowsController.GetWindow<GameWindow>();
             this.winLooseWindow = this.windowsController.GetWindow<WinLooseWindow>();
+            this.collectionWindow = this.windowsController.GetWindow<CollectionWindow>();
 
             this.mainMenuWindow.playStarted += OnGameRestarted;
             this.pauseWindow.gameRestared += OnGameRestarted;
             this.winLooseWindow.gameRestared += OnGameRestarted;
             this.gameWindow.bubbleCreated += OnBubbleCreated;
             this.roomController.spiresController.ringsOnSpiresCountChanged += OnRingOnSpireChanged;
+            this.mainMenuWindow.collectionOpened += () => this.collectionRoom.SetActiveObject(true);
+            this.collectionWindow.collectionClosed += () => this.collectionRoom.SetActiveObject(false);
 
             this.gameData = new GameData(this.timeForGame);
             this.gameData.ResetData(Time.time);
