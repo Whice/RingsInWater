@@ -77,6 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a81fbba586baa42b4e74f3f6ef1404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity3DPlace: {fileID: 8971825610050545926}
+  defaultEntityID: 1
+  defaultCollectionEntityType: 0
 --- !u!1001 &5914408057889910721
 PrefabInstance:
   m_ObjectHideFlags: 0

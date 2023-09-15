@@ -35,5 +35,11 @@ namespace Model
             this.currentCollectionEntityType = collectionEntityType;
             OnCollectionEntityChooseChanged();
         }
+
+        public void SetDefaultValues(int defaultEntityID, CollectionEntityType defaultCollectionEntityType)
+        {
+            this.currentEnityId = defaultEntityID;
+            this.currentCollectionEntityType = defaultCollectionEntityType;
+        }
     }
 }

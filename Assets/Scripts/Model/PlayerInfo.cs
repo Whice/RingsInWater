@@ -78,6 +78,23 @@ namespace Model
             return this.ringTypesAvailableToPlayer.Contains((int)ringViewId);
         }
         /// <summary>
+        /// Добавить новый ид в список доступных игроку представлений.
+        /// </summary>
+        /// <param name="id"></param>
+        public void AddRingIdToAvailable(int id)
+        {
+            if (!this.ringTypesAvailableToPlayer.Contains(id))
+            {
+                this.ringTypesAvailableToPlayer.Add(id);
+            }
+            else
+            {
+                this.logger?.LogWarning($"ID {(RingViewId)id} is already exist in list!");
+            }
+            //Save(this);
+        }
+
+        /// <summary>
         /// Доступные игроку виды колец.
         /// </summary>
         private HashSet<int> spiresTypesAvailableToPlayer = new HashSet<int>();
@@ -88,38 +105,19 @@ namespace Model
         {
             return this.spiresTypesAvailableToPlayer.Contains((int)spiresViewId);
         }
-
         /// <summary>
         /// Добавить новый ид в список доступных игроку представлений.
         /// </summary>
         /// <param name="id"></param>
-        public void AddRingIdToAvailable(RingViewId id)
+        public void AddSpireIdToAvailable(int id)
         {
-            int idInt = (int)id;
-            if (this.ringTypesAvailableToPlayer.Contains(idInt))
+            if (!this.spiresTypesAvailableToPlayer.Contains(id))
             {
-                this.ringTypesAvailableToPlayer.Add(idInt);
+                this.spiresTypesAvailableToPlayer.Add(id);
             }
             else
             {
-                this.logger?.LogWarning($"ID {id} is already exist in list!");
-            }
-            //Save(this);
-        }
-        /// <summary>
-        /// Добавить новый ид в список доступных игроку представлений.
-        /// </summary>
-        /// <param name="id"></param>
-        public void AddSpireIdToAvailable(SpiresViewId id)
-        {
-            int idInt = (int)id;
-            if (this.spiresTypesAvailableToPlayer.Contains(idInt))
-            {
-                this.spiresTypesAvailableToPlayer.Add(idInt);
-            }
-            else
-            {
-                this.logger?.LogWarning($"ID {id} is already exist in list!");
+                this.logger?.LogWarning($"ID {(SpiresViewId)id} is already exist in list!");
             }
             //Save(this);
         }

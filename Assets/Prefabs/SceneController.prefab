@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windowsController: {fileID: 1315514585645703522}
   roomController: {fileID: 2951387327023477884}
+  collectionRoom: {fileID: 6985709850028596607}
   timeForGame: 90
 --- !u!1 &4563438124458512739
 GameObject:
@@ -559,17 +560,17 @@ PrefabInstance:
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8342783
+      value: -57
       objectReference: {fileID: 0}
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8794029
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.210534
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
@@ -579,17 +580,17 @@ PrefabInstance:
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3646750800533456852, guid: 078cc06fe647fec4d8b976e37286eca4,
         type: 3}
@@ -622,3 +623,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8504288147054038895}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6985709850028596607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1654922349593383440, guid: 078cc06fe647fec4d8b976e37286eca4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8504288147054038895}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a81fbba586baa42b4e74f3f6ef1404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

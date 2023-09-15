@@ -26,6 +26,11 @@ namespace RingInWater.UI
             this.collectionClosed?.Invoke();    
             OpenPreviousWindow();
         }
+        private void OnCollectionChanged(CollectionEntityType entityType)
+        {
+            this.collectionModel.SetEntityType(entityType);
+            this.collectionChoosePanel.Initilize();
+        }
         protected override void OnCreate()
         {
             IsNullCheck(this.toMenuButton, this.toMenuButton.name);
@@ -37,9 +42,9 @@ namespace RingInWater.UI
             //Визуала для рузырей пока нет.
             this.bubbleButton.interactable = false;
 
-            this.ringsButton.onClick.AddListener(() => this.collectionModel.SetEntityType(CollectionEntityType.ring));
-            this.spiresButton.onClick.AddListener(() => this.collectionModel.SetEntityType(CollectionEntityType.spire));
-            this.bubbleButton.onClick.AddListener(() => this.collectionModel.SetEntityType(CollectionEntityType.bubble));
+            this.ringsButton.onClick.AddListener(() => OnCollectionChanged(CollectionEntityType.ring));
+            this.spiresButton.onClick.AddListener(() => OnCollectionChanged(CollectionEntityType.spire));
+            this.bubbleButton.onClick.AddListener(() => OnCollectionChanged(CollectionEntityType.bubble));
         }
 
         protected override void OnWindowDestroy()
