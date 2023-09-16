@@ -46,8 +46,9 @@ namespace RingInWater.UI
         /// </summary>
         private void DeactivateAllVisualizators()
         {
-            foreach (CollectionEntityVisualizator visualizator in this.activeEntity)
+            for (int i = this.activeEntity.Count - 1; i >= 0; i--)
             {
+                CollectionEntityVisualizator visualizator = this.activeEntity[i];
                 visualizator.SetActiveObject(false);
                 this.unactiveEntity.Push(visualizator);
             }
