@@ -10,7 +10,6 @@ namespace RingInWater.View
     /// </summary>
     public class RingsController : InitilizableView
     {
-        public RingViewId defaultView = RingViewId.corall;
         [SerializeField] private int ringsCount = 3;
         /// <summary>
         /// Границы случайного положения колец при их создании.
@@ -50,6 +49,7 @@ namespace RingInWater.View
         [SerializeField] private AnimationCurve curveRingsExplosion = null;
 
         [Inject] private AllViewsProvider allViewsProvider = null;
+        [Inject] private PlayerInfo playerInfo = null;
 
         /// <summary>
         /// Колчество колец в игре.
@@ -101,9 +101,10 @@ namespace RingInWater.View
         private RingView GetNewRingView()
         {
             RingView newView = null;
+
             if (this.createdRingViews.Count == 0)
             {
-                RingView template = this.allViewsProvider.GetRingView(this.defaultView);
+                RingView template = this.allViewsProvider.GetRingView(this.playerInfo.currentRingViewId);
                 newView = InstantiateWithInject(template, this.transform);
                 newView.SetActive(false);
                 this.createdRingViews.Push(newView);
@@ -318,14 +319,11 @@ namespace RingInWater.View
         /// </summary>
         public void ResetRings()
         {
-            foreach (RingView ringView in this.ringViews)
+            if (this.ringViews != null)
             {
-                if (ringView != null)
+                foreach (RingView ringView in this.ringViews)
                 {
-                    ringView.ResetView();
-                    ringView.SetActive(false);
-                    ringView.transform.SetParent(this.transform, true);
-                    this.createdRingViews.Push(ringView);
+                    Destroy(ringView.gameObject);
                 }
             }
             CreateRings();
@@ -333,7 +331,7 @@ namespace RingInWater.View
         public override void Initilize(RoomController roomController)
         {
             base.Initilize(roomController);
-            CreateRings();
+            ResetRings();
         }
     }
 }

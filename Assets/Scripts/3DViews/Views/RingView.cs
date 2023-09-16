@@ -43,7 +43,21 @@ namespace RingInWater.View
         /// <summary>
         /// <see cref="Rigidbody"/> представления кольца.
         /// </summary>
-        public Rigidbody selfRigidbody { get; private set; }
+        public Rigidbody selfRigidbodyPrivate;
+        /// <summary>
+        /// <see cref="Rigidbody"/> представления кольца.
+        /// </summary>
+        public Rigidbody selfRigidbody
+        {
+            get
+            {
+                if(this.selfRigidbodyPrivate == null)
+                {
+                    this.selfRigidbodyPrivate = GetComponentInChildren<Rigidbody>();
+                }
+                return this.selfRigidbodyPrivate; 
+            }
+        }
         /// <summary>
         /// Положение кольца по x оси.
         /// </summary>
@@ -148,7 +162,6 @@ namespace RingInWater.View
         }
         private void Awake()
         {
-            this.selfRigidbody = GetComponentInChildren<Rigidbody>();
             this.selfCollider = GetComponentInChildren<Collider>();
             //Ограничить угловую скорость, чтобы кольца не вращались слишком сильно.
             this.selfRigidbody.maxAngularVelocity = 3f;

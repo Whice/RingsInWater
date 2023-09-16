@@ -60,20 +60,16 @@ namespace RingInWater
         /// </summary>
         /// <param name="isActive">Отключить объект полностью.</param>
         /// <param name="isWolrdStop">Остановить процессы во времени.</param>
-        private void OnActive3DWorld(bool isActive, bool isWolrdStop)
+        private void OnActive3DWorld(bool isActive)
         {
             this.roomController.gameObject.SetActive(isActive);
-            if (isActive)
-            {
-                Time.timeScale = isWolrdStop ? 1.0f : 0.0f;
-            }
-
         }
 
         private void OnWindowChanged()
         {
             AbstractWindow current = this.windowsController.currentWindow;
-            OnActive3DWorld(current is InGameWindow, current is GameWindow);
+            OnActive3DWorld(current is InGameWindow);
+            Time.timeScale = current is GameWindow or CollectionWindow ? 1.0f : 0.0f;
         }
         private void OnBubbleCreated(int index)
         {
@@ -117,6 +113,7 @@ namespace RingInWater
             this.roomController.spiresController.ringsOnSpiresCountChanged += OnRingOnSpireChanged;
             this.mainMenuWindow.collectionOpened += () => this.collectionRoom.SetActiveObject(true);
             this.collectionWindow.collectionClosed += () => this.collectionRoom.SetActiveObject(false);
+            this.collectionRoom.SetActiveObject(false);
 
             this.gameData = new GameData(this.timeForGame);
             this.gameData.ResetData(Time.time);

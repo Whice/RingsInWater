@@ -117,7 +117,30 @@ namespace RingInWater.View
                 }
             }
         }
+        private void CreateRingsAndSpire()
+        {
+            CollectionEntity[] entities = this.collectionEntitiesProvider.GetCollectionByType<CollectionRing>();
+            if (!IsNullCheck(entities, nameof(entities) + "in collection room"))
+            {
+                this.currentEnitiesByType.Clear();
+                foreach (CollectionEntity entity in entities)
+                {
+                    this.currentEnitiesByType[entity.id] = entity;
+                }
+            }
+            CreateRings();
 
+            entities = this.collectionEntitiesProvider.GetCollectionByType<CollectionSpire>();
+            if (!IsNullCheck(entities, nameof(entities) + "in collection room"))
+            {
+                this.currentEnitiesByType.Clear();
+                foreach (CollectionEntity entity in entities)
+                {
+                    this.currentEnitiesByType[entity.id] = entity;
+                }
+            }
+            CreateSpire();
+        }
         private void Awake()
         {
             //Сделать все кольца и шпили доступными игроку, для тестов!!!
@@ -130,14 +153,13 @@ namespace RingInWater.View
                 this.playerInfo.AddSpireIdToAvailable(entity.id);
             }
 
-            currentRingViews = new GameObject[this.ringPlaces.Length];
+            this.currentRingViews = new GameObject[this.ringPlaces.Length];
 
             this.collectionModel.SetDefaultValues(this.defaultEntityID, this.defaultCollectionEntityType);
             this.playerInfo.collectionModel.collectionEntityChooseChanged += OnCollectionEntityChooseChanged;
 
             //Создать кольца и шпиль при входе в коллекцию.
-            OnCollectionEntityChooseChanged(CollectionEntityType.ring, 0);
-            OnCollectionEntityChooseChanged(CollectionEntityType.spire, 0);
+            CreateRingsAndSpire();
         }
     }
 }
