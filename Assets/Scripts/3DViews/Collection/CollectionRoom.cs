@@ -39,7 +39,7 @@ namespace RingInWater.View
                 if (ring != null)
                     Destroy(ring);
 
-            if (this.currentEnitiesByType.TryGetValue(this.collectionModel.currentEnityId, out CollectionEntity collectionEntity))
+            if (this.currentEnitiesByType.TryGetValue((int)this.playerInfo.currentRingViewId, out CollectionEntity collectionEntity))
             {
                 for (int i = 0; i < this.currentRingViews.Length; i++)
                 {
@@ -58,7 +58,7 @@ namespace RingInWater.View
                 Destroy(this.currentSpireView);
             }
 
-            if (this.currentEnitiesByType.TryGetValue(this.collectionModel.currentEnityId, out CollectionEntity collectionEntity))
+            if (this.currentEnitiesByType.TryGetValue((int)this.playerInfo.currentSpiresViewId, out CollectionEntity collectionEntity))
             {
                 this.currentSpireView = InstantiateWithInject(collectionEntity.view.gameObject, this.spirePlace);
                 Destroy(this.currentSpireView.GetComponentInChildren<SpireStickView>());
@@ -71,6 +71,7 @@ namespace RingInWater.View
         }
         private void OnCollectionEntityChooseChanged(CollectionEntityType type, int id)
         {
+            //Если сменился тип коллекции, то обновить словарь с объектами для отображения
             if (type != this.currentCollectionType)
             {
                 this.currentCollectionType = type;
@@ -93,24 +94,27 @@ namespace RingInWater.View
                     }
                 }
             }
-
-            switch (type)
+            //Если сменился id, то робновить непосредственно сам внений вид.
+            else
             {
-                case CollectionEntityType.ring:
-                    {
-                        CreateRings();
-                        break;
-                    }
-                case CollectionEntityType.spire:
-                    {
-                        CreateSpire();
-                        break;
-                    }
-                case CollectionEntityType.bubble:
-                    {
-                        //ToDo: еще нет реализации для пузырей.
-                        break;
-                    }
+                switch (type)
+                {
+                    case CollectionEntityType.ring:
+                        {
+                            CreateRings();
+                            break;
+                        }
+                    case CollectionEntityType.spire:
+                        {
+                            CreateSpire();
+                            break;
+                        }
+                    case CollectionEntityType.bubble:
+                        {
+                            //ToDo: еще нет реализации для пузырей.
+                            break;
+                        }
+                }
             }
         }
 

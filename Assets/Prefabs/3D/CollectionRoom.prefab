@@ -319,7 +319,7 @@ MonoBehaviour:
   - {fileID: 1653908837221638058}
   - {fileID: 7524833412083405430}
   defaultEntityID: 1
-  defaultCollectionEntityType: 0
+  defaultCollectionEntityType: 2
 --- !u!1001 &5914408057889910721
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using RingInWater.Utility;
 using RingInWater.View;
 using RingInWater.View.Providers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -33,7 +34,9 @@ namespace RingInWater.UI
         {
             if(this.unactiveEntity.Count == 0)
             {
-                this.unactiveEntity.Push(InstantiateWithInject(this.entityVisualizatorTemplate, this.visualizatorsParent));
+                CollectionEntityVisualizator newEntityVisualizator = InstantiateWithInject(this.entityVisualizatorTemplate, this.visualizatorsParent);
+                this.unactiveEntity.Push(newEntityVisualizator);
+                newEntityVisualizator.entityChossed += OnCollectionEntityIdChoosed;
             }
 
             CollectionEntityVisualizator visualizator = this.unactiveEntity.Pop();
@@ -54,6 +57,19 @@ namespace RingInWater.UI
             }
             this.activeEntity.Clear();
         }
+        public void OnCollectionEntityIdChoosed(CollectionEntity entity)
+        {
+            this.collectionModel.SetEntityID(entity.id);
+            if (entity is CollectionRing)
+            {
+                this.playerInfo.currentRingViewId = (RingViewId)entity.id;
+            }
+            else if (entity is CollectionSpire)
+            {
+                this.playerInfo.currentSpiresViewId = (SpiresViewId)entity.id;
+            }
+        }
+
         public void Initilize()
         {
             DeactivateAllVisualizators();
