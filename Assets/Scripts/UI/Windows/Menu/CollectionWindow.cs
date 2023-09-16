@@ -45,6 +45,7 @@ namespace RingInWater.UI
             this.ringsButton.onClick.AddListener(() => OnCollectionChanged(CollectionEntityType.ring));
             this.spiresButton.onClick.AddListener(() => OnCollectionChanged(CollectionEntityType.spire));
             this.bubbleButton.onClick.AddListener(() => OnCollectionChanged(CollectionEntityType.bubble));
+            OnCollectionChanged(CollectionEntityType.spire);
         }
 
         protected override void OnWindowDestroy()

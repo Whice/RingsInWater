@@ -5,6 +5,7 @@
     /// </summary>
     public enum CollectionEntityType
     {
+        unknown = 0,
         ring,
         spire,
         bubble
